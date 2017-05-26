@@ -35,11 +35,11 @@ namespace App1.Views
             {
                 ChevereMenuItems = new ObservableCollection<ChevereMenuItem>(new[]
                 {
-                    new ChevereMenuItem { Id = 0, Title = "Page 1" },
-                    new ChevereMenuItem { Id = 1, Title = "Page 2" },
-                    new ChevereMenuItem { Id = 2, Title = "Page 3" },
-                    new ChevereMenuItem { Id = 3, Title = "Page 4" },
-                    new ChevereMenuItem { Id = 4, Title = "Page 5" },
+                    new ChevereMenuItem { Id = 0, Title = "Radio OnAir" },
+                    new ChevereMenuItem { Id = 1, Title = "NOSOTROS" },
+                    new ChevereMenuItem { Id = 2, Title = "PROGRAMAS" },
+                    new ChevereMenuItem { Id = 3, Title = "NOTICIAS" },
+                    new ChevereMenuItem { Id = 4, Title = "PATROCINANTES" },
                 });
             }
             public event PropertyChangedEventHandler PropertyChanged;
