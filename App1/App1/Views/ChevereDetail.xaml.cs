@@ -15,6 +15,11 @@ namespace App1.Views
         public ChevereDetail()
         {
             InitializeComponent();
+
+            var browser = new WebView();
+            var htmlSource = new HtmlWebViewSource();
+            htmlSource.Html = @"<html><body style='background-color:blue;'><h1>Xamarin.Forms</h1><p>Welcome to WebView.</p></body></html>";
+            browser.Source = htmlSource; // "http://levantatechevere.es/";
         }
     }
 }
