@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App1.Views.NosotrosPage"
+             Title="NosotrosPage">
+    <ScrollView>
+        <StackLayout Padding="10">
+            <Label HorizontalTextAlignment="Start"
+  VerticalOptions="Center" HorizontalOptions="Center"  Text="Levántate Chévere es el primer y único programa de corte Venezolano que existe en la radio en España, es conducido por un luchador de los valores Venezolanos tu pana HARDIMAN (José Luis Hardisson), contamos con un  repertorio musical que comprende desde cantantes Venezolanos (Diveana, Roberto Antonio, Guillermo Davila, Karina, Kyara, Colina, Ricardo Montaner, Melissa, Yordano, Chino y Nacho, Guaco, Los Melódicos, La Billos, Reynaldo Armas, Simón Dicaz y Reina Lucero entre muchos otros) así como los éxitos más sonados en las principales carteleras en España."/>
+            <Label HorizontalTextAlignment="Start"
+  VerticalOptions="Center" HorizontalOptions="Center"  Text="Levántate Chévere tuvo su primera transmisión el 8 de agosto de 2016, comenzando con un horario de 8:00 am a 9:00 am. En pocas semanas llegamos a 10 patrocinantes lo que nos permitió ampliar nuestro horario de 8:00 am a 9:30 am."/>
+            <Label HorizontalTextAlignment="Start"
+  VerticalOptions="Center" HorizontalOptions="Center"  Text="Definitivamente la comunidad Venezolana desde el primer momento, se conectó con la esencia del programa, esto luego de una ardua tarea de Marketing en todas las redes Sociales. A finales del 2016 seguimos con la línea ascendente tanto de seguidores como de Patrocinantes y volvimos a ampliar el horario. Actualmente se trasmite de lunes a viernes de 8:00 am a 9:45 am."/>
+
+            <Label Text="Las alternativas actuales para escuchar el programa son: "/>
+            <Label Text="- FM 102.1 Radio Corazón Tropical (Madrid, excepto zonas por encima de Plaza Castilla)."/>
+            <Label Text="- www.levantatechevere.com"/>
+            <Label Text="- www.facebook.com/levancheve"/>
+            <Label Text="- instagram #levantatechevere"/>
+            <Label Text="- FM 99.4 La Kalle (Bilbao y sus alrededores)."/>
+
+            <!--<Button Text="Click Me" Command="{Binding IncreaseCountCommand}"/>
+      <Label Text="{Binding CountDisplay}"/>-->
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

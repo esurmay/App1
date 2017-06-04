@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App1.Views.ChevereMaster"
+             Title="Master">
+
+    <StackLayout>
+        <ListView x:Name="listView" BackgroundColor="#303440" SeparatorColor="#848484"
+              SeparatorVisibility="Default"
+              HasUnevenRows="true"
+              ItemsSource="{Binding ChevereMenuItems}">
+            <ListView.Header>
+     
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="5"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="10"/>
+                        <RowDefinition Height="10"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Label FontSize="Medium" FontFamily="Open Sans, serif"
+              Grid.Column="1"
+              Grid.Row="2"
+              Text="LEVÁNTATE CHÉVERE" TextColor="White"
+              Style="{DynamicResource SubtitleStyle}"/>
+                </Grid>
+
+            </ListView.Header>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="15,10" HorizontalOptions="FillAndExpand">
+                            <Label VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" Text="{Binding Title}"  
+                            TextColor="White"  FontFamily="Open Sans, serif" FontSize="Medium" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>
