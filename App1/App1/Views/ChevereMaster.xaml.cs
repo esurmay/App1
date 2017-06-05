@@ -34,7 +34,7 @@ namespace App1.Views
                     new ChevereMenuItem { Id = 1, Title = "INICIO", TargetType = typeof(InicioPage) },
                     new ChevereMenuItem { Id = 2, Title = "NOSOTROS", TargetType = typeof(NosotrosPage) },
                     new ChevereMenuItem { Id = 3, Title = "PROGRAMAS", TargetType = typeof(ProgramasPage) },
-                    new ChevereMenuItem { Id = 4, Title = "NOTICIAS" },
+                    new ChevereMenuItem { Id = 4, Title = "NOTICIAS", TargetType = typeof(NoticiasPage) },
                     new ChevereMenuItem { Id = 5, Title = "PATROCINANTES" },
                     new ChevereMenuItem { Id = 6, Title = "RADIO EN VIVO", TargetType = typeof(RadioVivoPage) }
                 });
