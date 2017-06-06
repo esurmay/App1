@@ -39,10 +39,11 @@ namespace App1.Views
 
             var page = (Page)Activator.CreateInstance(item.TargetType);
             page.Title = item.Title;
-            Detail = new NavigationPage(page);
-            //var nav = new NavigationPage(page);
+            //Detail = new NavigationPage(page);
+            var nav = new NavigationPage(page);
+            nav.PushAsync(page);
             //nav.BarBackgroundColor = "#303440";
-            //Detail = nav;
+            Detail = nav;
 
             MasterPage.ListView.SelectedItem = null;
             IsPresented = false;

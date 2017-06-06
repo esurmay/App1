@@ -59,18 +59,49 @@ namespace App1.Views
                 new Item { Text = "Japanese Macaque", Detail = "Japan" },
             });
 
-            var sorted = from item in Items
-                         orderby item.Text
-                         group item by item.Text[0].ToString() into itemGroup
-                         select new Grouping<string, Item>(itemGroup.Key, itemGroup);
+            //var sorted = from item in Items
+            //             orderby item.Text
+            //             group item by item.Text[0].ToString() into itemGroup
+            //             select new Grouping<string, Item>(itemGroup.Key, itemGroup);
 
-            ItemsGrouped = new ObservableCollection<Grouping<string, Item>>(sorted);
+            //ItemsGrouped = new ObservableCollection<Grouping<string, Item>>(sorted);
+            GetFeedNewsSync();
 
             RefreshDataCommand = new Command(
                 async () => await GetFeedNews());
         }
 
         public ICommand RefreshDataCommand { get; }
+
+        void GetFeedNewsSync()
+        {
+            string url = "http://levantatechevere.es/category/noticias/feed/";
+            string responseString = string.Empty;
+            using (var client = new HttpClient())
+            {
+                var response = client.GetAsync(url).Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseContent = response.Content;
+                    responseString = responseContent.ReadAsStringAsync().Result;
+                }
+            }
+            responseString = responseString.TrimStart();
+            var items1 = XDocument.Parse(responseString)
+                          .Descendants("item")
+                          .Select(i => new Item
+                          {
+                              Text = (string)i.Element("title"),
+                              Detail = (string)i.Element("description"),
+                          });
+            Items.Clear();
+            foreach (var item in items1)
+            {
+                Items.Add(item);
+            }
+
+        }
+
 
         async Task GetFeedNews()
         {
@@ -94,22 +125,34 @@ namespace App1.Views
             }
             responseString = responseString.TrimStart();
             var items1 = XDocument.Parse(responseString)
-                          .Descendants("item")
-                          .Select(i => new Item
-                          {
-                              Text = (string)i.Element("title"),
-                              Detail = (string)i.Element("description"),
-                          });
-            ItemsGrouped.Clear();
-
-            var sorted = from item in items1
-                         orderby item.Text
-                         group item by item.Text[0].ToString() into itemGroup
-                         select new Grouping<string, Item>(itemGroup.Key, itemGroup);
-            foreach (var item in sorted)
+                         .Descendants("item")
+                         .Select(i => new Item
+                         {
+                             Text = (string)i.Element("title"),
+                             Detail = (string)i.Element("description"),
+                         });
+            Items.Clear();
+            foreach (var item in items1)
             {
-                ItemsGrouped.Add(item);
+                Items.Add(item);
             }
+            //var items1 = XDocument.Parse(responseString)
+            //              .Descendants("item")
+            //              .Select(i => new Item
+            //              {
+            //                  Text = (string)i.Element("title"),
+            //                  Detail = (string)i.Element("description"),
+            //              });
+            //ItemsGrouped.Clear();
+
+            //var sorted = from item in items1
+            //             orderby item.Text
+            //             group item by item.Text[0].ToString() into itemGroup
+            //             select new Grouping<string, Item>(itemGroup.Key, itemGroup);
+            //foreach (var item in sorted)
+            //{
+            //    ItemsGrouped.Add(item);
+            //}
 
             await Task.Delay(2000);
 
