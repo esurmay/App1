@@ -50,13 +50,14 @@ namespace App1.Views
         {
             Items = new ObservableCollection<Item>(new[]
             {
-                new Item { Text = "Baboon", Detail = "Africa & Asia" },
-                new Item { Text = "Capuchin Monkey", Detail = "Central & South America" },
-                new Item { Text = "Blue Monkey", Detail = "Central & East Africa" },
-                new Item { Text = "Squirrel Monkey", Detail = "Central & South America" },
-                new Item { Text = "Golden Lion Tamarin", Detail= "Brazil" },
-                new Item { Text = "Howler Monkey", Detail = "South America" },
-                new Item { Text = "Japanese Macaque", Detail = "Japan" },
+                new Item { Text = "TITULO EN GRANDE Y LARGO", Detail = "Africa & Asia Africa & Asia Africa & Asia Africa & Asia" +
+                "Africa & Asia Africa & Asia Africa & Asia", ImageUrl = "Down.png" },
+                //new Item { Text = "Capuchin Monkey", Detail = "Central & South America" },
+                //new Item { Text = "Blue Monkey", Detail = "Central & East Africa" },
+                //new Item { Text = "Squirrel Monkey", Detail = "Central & South America" },
+                //new Item { Text = "Golden Lion Tamarin", Detail= "Brazil" },
+                //new Item { Text = "Howler Monkey", Detail = "South America" },
+                //new Item { Text = "Japanese Macaque", Detail = "Japan" },
             });
 
             //var sorted = from item in Items
@@ -65,7 +66,7 @@ namespace App1.Views
             //             select new Grouping<string, Item>(itemGroup.Key, itemGroup);
 
             //ItemsGrouped = new ObservableCollection<Grouping<string, Item>>(sorted);
-            GetFeedNewsSync();
+            //GetFeedNewsSync();
 
             RefreshDataCommand = new Command(
                 async () => await GetFeedNews());
@@ -189,7 +190,8 @@ namespace App1.Views
         {
             public string Text { get; set; }
             public string Detail { get; set; }
-
+            public string ImageUrl { get; set; }
+            
             public override string ToString() => Text;
         }
 
