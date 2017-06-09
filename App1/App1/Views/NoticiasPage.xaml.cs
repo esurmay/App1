@@ -21,7 +21,9 @@ namespace App1.Views
         public NoticiasPage()
         {
             InitializeComponent();
-            BindingContext = new NoticiasPageViewModel();
+            BindingContext = new NoticiasPageViewModel(null);
+            var objlist = LVNoticias.ItemsSource;
+            
         }
         void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
           => ((ListView)sender).SelectedItem = null;
@@ -29,7 +31,7 @@ namespace App1.Views
         async void Handle_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             if (e.SelectedItem == null)
-                return;
+                return; 
 
             await DisplayAlert("Selected", e.SelectedItem.ToString(), "OK");
 
@@ -46,18 +48,15 @@ namespace App1.Views
 
         public ObservableCollection<Grouping<string, Item>> ItemsGrouped { get; set; }
 
-        public NoticiasPageViewModel()
+        public NoticiasPageViewModel(object LVNoticias)
         {
-            Items = new ObservableCollection<Item>(new[]
+            if (LVNoticias == null || LVNoticias.Count == 0)
             {
-                new Item { Text = "Baboon", Detail = "Africa & Asia" },
-                new Item { Text = "Capuchin Monkey", Detail = "Central & South America" },
-                new Item { Text = "Blue Monkey", Detail = "Central & East Africa" },
-                new Item { Text = "Squirrel Monkey", Detail = "Central & South America" },
-                new Item { Text = "Golden Lion Tamarin", Detail= "Brazil" },
-                new Item { Text = "Howler Monkey", Detail = "South America" },
-                new Item { Text = "Japanese Macaque", Detail = "Japan" },
-            });
+                Items = new ObservableCollection<Item>(new[]
+                {
+                    new Item { Text = "Desliza chévere para ver las noticias", Detail = "", DefaultImage = "Pulldown.png" },
+                }); 
+            }
 
             //var sorted = from item in Items
             //             orderby item.Text
@@ -65,7 +64,7 @@ namespace App1.Views
             //             select new Grouping<string, Item>(itemGroup.Key, itemGroup);
 
             //ItemsGrouped = new ObservableCollection<Grouping<string, Item>>(sorted);
-            GetFeedNewsSync();
+           // GetFeedNewsSync();
 
             RefreshDataCommand = new Command(
                 async () => await GetFeedNews());
@@ -116,11 +115,8 @@ namespace App1.Views
                 var response = client.GetAsync(url).Result;
                 if (response.IsSuccessStatusCode)
                 {
-                    // by calling .Result you are performing a synchronous call
                     var responseContent = response.Content;
-                    // by calling .Result you are synchronously reading the result
                     responseString = responseContent.ReadAsStringAsync().Result;
-
                 }
             }
             responseString = responseString.TrimStart();
@@ -130,31 +126,16 @@ namespace App1.Views
                          {
                              Text = (string)i.Element("title"),
                              Detail = (string)i.Element("description"),
+                             DefaultImage = "",
                          });
-            Items.Clear();
-            foreach (var item in items1)
+            if(Items.Count == 1) Items.Clear();
+            if (items1.Count() > Items.Count)
             {
-                Items.Add(item);
+                foreach (var item in items1)
+                {
+                    Items.Add(item);
+                } 
             }
-            //var items1 = XDocument.Parse(responseString)
-            //              .Descendants("item")
-            //              .Select(i => new Item
-            //              {
-            //                  Text = (string)i.Element("title"),
-            //                  Detail = (string)i.Element("description"),
-            //              });
-            //ItemsGrouped.Clear();
-
-            //var sorted = from item in items1
-            //             orderby item.Text
-            //             group item by item.Text[0].ToString() into itemGroup
-            //             select new Grouping<string, Item>(itemGroup.Key, itemGroup);
-            //foreach (var item in sorted)
-            //{
-            //    ItemsGrouped.Add(item);
-            //}
-
-            await Task.Delay(2000);
 
             IsBusy = false;
         }
@@ -189,6 +170,7 @@ namespace App1.Views
         {
             public string Text { get; set; }
             public string Detail { get; set; }
+            public string DefaultImage { get; set; }
 
             public override string ToString() => Text;
         }
