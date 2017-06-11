@@ -13,17 +13,9 @@
             RefreshCommand="{Binding RefreshDataCommand}"
               SeparatorColor="Blue">
 
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <ImageCell 
-                                     Text="{Binding Text}"
-                                     Detail="{Binding Detail}"
-                                     ImageSource="{Binding ImageUrl}">
-                </ImageCell>
-            </DataTemplate>
-        </ListView.ItemTemplate>
+        
         <!--Built in Cells-->
-        <!--<ListView.ItemTemplate>
+        <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
                     <StackLayout>
@@ -35,7 +27,7 @@
                     </StackLayout>
                 </ViewCell>
             </DataTemplate>
-        </ListView.ItemTemplate>-->
+        </ListView.ItemTemplate>
 
 
     </ListView>

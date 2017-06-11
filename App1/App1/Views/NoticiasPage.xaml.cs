@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Xml.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using App1.Services;
 
 namespace App1.Views
 {
@@ -42,31 +43,30 @@ namespace App1.Views
 
     class NoticiasPageViewModel : INotifyPropertyChanged
     {
-        public ObservableCollection<Item> Items { get; set; }
-
-        public ObservableCollection<Grouping<string, Item>> ItemsGrouped { get; set; }
+        public ObservableCollection<ItemDetails> Items
+        {
+            get
+            {
+                return Settings.ListNoticias ?? new ObservableCollection<ItemDetails>();
+            }
+            set
+            {
+                Settings.ListNoticias = value;
+                RaisePropertyChanged();
+            }
+        }
 
         public NoticiasPageViewModel()
         {
-            Items = new ObservableCollection<Item>(new[]
+            if (Settings.ListNoticias == null)
             {
-                new Item { Text = "TITULO EN GRANDE Y LARGO", Detail = "Africa & Asia Africa & Asia Africa & Asia Africa & Asia" +
-                "Africa & Asia Africa & Asia Africa & Asia", ImageUrl = "Down.png" },
-                //new Item { Text = "Capuchin Monkey", Detail = "Central & South America" },
-                //new Item { Text = "Blue Monkey", Detail = "Central & East Africa" },
-                //new Item { Text = "Squirrel Monkey", Detail = "Central & South America" },
-                //new Item { Text = "Golden Lion Tamarin", Detail= "Brazil" },
-                //new Item { Text = "Howler Monkey", Detail = "South America" },
-                //new Item { Text = "Japanese Macaque", Detail = "Japan" },
-            });
-
-            //var sorted = from item in Items
-            //             orderby item.Text
-            //             group item by item.Text[0].ToString() into itemGroup
-            //             select new Grouping<string, Item>(itemGroup.Key, itemGroup);
-
-            //ItemsGrouped = new ObservableCollection<Grouping<string, Item>>(sorted);
-            //GetFeedNewsSync();
+                Items = new ObservableCollection<ItemDetails>(new[]
+                   {
+                        new ItemDetails { Text = "TITULO EN GRANDE Y LARGO", Detail = "Africa & Asia Africa & Asia Africa & Asia Africa & Asia" +
+                        "Africa & Asia Africa & Asia Africa & Asia", ImageUrl = "Down.png" },
+                     });
+                Settings.ListNoticias = Items;
+            }
 
             RefreshDataCommand = new Command(
                 async () => await GetFeedNews());
@@ -74,40 +74,39 @@ namespace App1.Views
 
         public ICommand RefreshDataCommand { get; }
 
-        void GetFeedNewsSync()
-        {
-            string url = "http://levantatechevere.es/category/noticias/feed/";
-            string responseString = string.Empty;
-            using (var client = new HttpClient())
-            {
-                var response = client.GetAsync(url).Result;
-                if (response.IsSuccessStatusCode)
-                {
-                    var responseContent = response.Content;
-                    responseString = responseContent.ReadAsStringAsync().Result;
-                }
-            }
-            responseString = responseString.TrimStart();
-            var items1 = XDocument.Parse(responseString)
-                          .Descendants("item")
-                          .Select(i => new Item
-                          {
-                              Text = (string)i.Element("title"),
-                              Detail = (string)i.Element("description"),
-                          });
-            Items.Clear();
-            foreach (var item in items1)
-            {
-                Items.Add(item);
-            }
+        //void GetFeedNewsSync()
+        //{
+        //    string url = "http://levantatechevere.es/category/noticias/feed/";
+        //    string responseString = string.Empty;
+        //    using (var client = new HttpClient())
+        //    {
+        //        var response = client.GetAsync(url).Result;
+        //        if (response.IsSuccessStatusCode)
+        //        {
+        //            var responseContent = response.Content;
+        //            responseString = responseContent.ReadAsStringAsync().Result;
+        //        }
+        //    }
+        //    responseString = responseString.TrimStart();
+        //    var items1 = XDocument.Parse(responseString)
+        //                  .Descendants("item")
+        //                  .Select(i => new Item
+        //                  {
+        //                      Text = (string)i.Element("title"),
+        //                      Detail = (string)i.Element("description"),
+        //                  });
+        //    Items.Clear();
+        //    foreach (var item in items1)
+        //    {
+        //        Items.Add(item);
+        //    }
 
-        }
+        //}
 
 
         async Task GetFeedNews()
         {
             IsBusy = true;
-            //Load Data Here
 
             string url = "http://levantatechevere.es/category/noticias/feed/";
             string responseString = string.Empty;
@@ -117,49 +116,29 @@ namespace App1.Views
                 var response = client.GetAsync(url).Result;
                 if (response.IsSuccessStatusCode)
                 {
-                    // by calling .Result you are performing a synchronous call
                     var responseContent = response.Content;
-                    // by calling .Result you are synchronously reading the result
                     responseString = responseContent.ReadAsStringAsync().Result;
-
                 }
             }
             responseString = responseString.TrimStart();
-            var items1 = XDocument.Parse(responseString)
+            var query = XDocument.Parse(responseString)
                          .Descendants("item")
-                         .Select(i => new Item
+                         .Select(i => new ItemDetails
                          {
                              Text = (string)i.Element("title"),
                              Detail = (string)i.Element("description"),
                          });
-            Items.Clear();
-            foreach (var item in items1)
+
+            if(Items.Count <= 1) Items.Clear();
+            if (query.Count() > Items.Count)
             {
-                Items.Add(item);
+                foreach (var item in query)
+                    Items.Add(item);
+                Settings.ListNoticias = Items;
             }
-            //var items1 = XDocument.Parse(responseString)
-            //              .Descendants("item")
-            //              .Select(i => new Item
-            //              {
-            //                  Text = (string)i.Element("title"),
-            //                  Detail = (string)i.Element("description"),
-            //              });
-            //ItemsGrouped.Clear();
-
-            //var sorted = from item in items1
-            //             orderby item.Text
-            //             group item by item.Text[0].ToString() into itemGroup
-            //             select new Grouping<string, Item>(itemGroup.Key, itemGroup);
-            //foreach (var item in sorted)
-            //{
-            //    ItemsGrouped.Add(item);
-            //}
-
-            await Task.Delay(2000);
-
             IsBusy = false;
         }
-        
+
         public bool IsBusy
         {
             get
@@ -185,13 +164,13 @@ namespace App1.Views
         public event PropertyChangedEventHandler PropertyChanged;
 
         #endregion
-         
+
         public class Item
         {
             public string Text { get; set; }
             public string Detail { get; set; }
             public string ImageUrl { get; set; }
-            
+
             public override string ToString() => Text;
         }
 
