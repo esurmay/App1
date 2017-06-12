@@ -32,11 +32,7 @@ namespace App1.Views
             if (e.SelectedItem == null)
                 return;
 
-
             var obj = e.SelectedItem as ItemDetails;
-
-            //await DisplayAlert("Selected", e.SelectedItem.ToString(), "OK");
-
             var answer = await DisplayAlert("Levantate Chévere", "Ver noticia completa.", "Si", "No");
             if (answer)
                 Device.OpenUri(new Uri(obj.Link));

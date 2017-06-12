@@ -1,4 +1,5 @@
-﻿using System;
+﻿using App1.Services;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -31,8 +32,11 @@ namespace App1.Views
             if (e.SelectedItem == null)
                 return;
 
-            await DisplayAlert("Selected", e.SelectedItem.ToString(), "OK");
-            
+            var obj = e.SelectedItem as ItemDetails;
+            var answer = await DisplayAlert("Levantate Chévere", "Ver noticia completa.", "Si", "No");
+            if (answer)
+                Device.OpenUri(new Uri(obj.Link));
+
             //Deselect Item
             ((ListView)sender).SelectedItem = null;
         }
@@ -42,29 +46,30 @@ namespace App1.Views
 
     class ProgramasPageViewModel : INotifyPropertyChanged
     {
-        //public ObservableCollection<Item> Items { get; set; }
-
+        public ObservableCollection<ItemDetails> Items
+        {
+            get
+            {
+                return Settings.ListProgramas ?? new ObservableCollection<ItemDetails>();
+            }
+            set
+            {
+                Settings.ListProgramas = value;
+                RaisePropertyChanged();
+            }
+        }
         public ObservableCollection<Grouping<string, Item>> ItemsGrouped { get; set; }
 
         public ProgramasPageViewModel()
         {
-            Items = new ObservableCollection<Item>(new[]
+            if (Settings.ListProgramas == null)
             {
-                new Item { Text = "Baboon", Detail = "Africa & Asia" },
-                new Item { Text = "Capuchin Monkey", Detail = "Central & South America" },
-                new Item { Text = "Blue Monkey", Detail = "Central & East Africa" },
-                new Item { Text = "Squirrel Monkey", Detail = "Central & South America" },
-                new Item { Text = "Golden Lion Tamarin", Detail= "Brazil" },
-                new Item { Text = "Howler Monkey", Detail = "South America" },
-                new Item { Text = "Japanese Macaque", Detail = "Japan" },
-            });
-
-            var sorted = from item in Items
-                         orderby item.Text
-                         group item by item.Text[0].ToString() into itemGroup
-                         select new Grouping<string, Item>(itemGroup.Key, itemGroup);
-
-            ItemsGrouped = new ObservableCollection<Grouping<string, Item>>(sorted);
+                Items = new ObservableCollection<ItemDetails>(new[]
+                   {
+                        new ItemDetails { Text = "Desliza y Actualiza noticias Chéveres", Detail = "", ImageUrl = "Down.png" },
+                     });
+                Settings.ListProgramas = Items;
+            }
 
             RefreshDataCommand = new Command(
                 async () => await GetFeedPrograms());
@@ -75,7 +80,6 @@ namespace App1.Views
         async Task GetFeedPrograms()
         {
             IsBusy = true;
-            //Load Data Here
 
             string url = "http://levantatechevere.es/category/programas/feed/";
             string responseString = string.Empty;
@@ -85,54 +89,31 @@ namespace App1.Views
                 var response = client.GetAsync(url).Result;
                 if (response.IsSuccessStatusCode)
                 {
-                    // by calling .Result you are performing a synchronous call
                     var responseContent = response.Content;
-                    // by calling .Result you are synchronously reading the result
                     responseString = responseContent.ReadAsStringAsync().Result;
-
                 }
             }
             responseString = responseString.TrimStart();
-            var items1 = XDocument.Parse(responseString)
-                          .Descendants("item")
-                          .Select(i => new Item
-                          {
-                              Text = (string)i.Element("title"),
-                              Detail = (string)i.Element("description"),
-                          });
-            ItemsGrouped.Clear();
+            var query = XDocument.Parse(responseString)
+                         .Descendants("item")
+                         .Select(i => new ItemDetails
+                         {
+                             Text = (string)i.Element("title"),
+                             Detail = (string)i.Element("description"),
+                             Link = (string)i.Element("link"),
+                         });
 
-            var sorted = from item in items1
-                         orderby item.Text
-                         group item by item.Text[0].ToString() into itemGroup
-                         select new Grouping<string, Item>(itemGroup.Key, itemGroup);
-            foreach (var item in sorted)
+            if (Items.Count <= 1) Items.Clear();
+            if (query.Count() > Items.Count)
             {
-                ItemsGrouped.Add(item);
+                foreach (var item in query)
+                    Items.Add(item);
+                Settings.ListProgramas = Items;
             }
-
-            await Task.Delay(2000);
-
             IsBusy = false;
         }
 
-        async Task RefreshData()
-        {
-            IsBusy = true;
-            //Load Data Here
-            await Task.Delay(2000);
-
-            IsBusy = false;
-        }
-
-        public ObservableCollection<Item> _items;
-        public ObservableCollection<Item> Items
-        {
-            get { return _items; }
-            set { _items = value; RaisePropertyChanged("Items"); }
-        }
-
-
+    
         public bool IsBusy
         {
             get
