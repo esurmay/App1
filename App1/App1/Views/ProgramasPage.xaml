@@ -6,41 +6,18 @@
     <ListView x:Name="LVProgramas" ItemsSource="{Binding Items}" 
             ItemTapped="Handle_ItemTapped"
             ItemSelected="Handle_ItemSelected"
-            HasUnevenRows="true"
-            GroupShortNameBinding="{Binding Key}"
-            IsGroupingEnabled="true"
-            GroupDisplayBinding="{Binding Key}"
+            HasUnevenRows="true"           
             IsPullToRefreshEnabled="true"
             CachingStrategy="RecycleElement"
             IsRefreshing="{Binding IsBusy, Mode=TwoWay}"
             RefreshCommand="{Binding RefreshDataCommand}"
               SeparatorColor="Blue">
-        <ListView.Header>
-            <StackLayout Padding="10" 
-                   Orientation="Horizontal"
-                   HorizontalOptions="FillAndExpand"
-                   BackgroundColor="#dadada">
-                <Label Text="Header"
-               HorizontalTextAlignment="Center"
-               HorizontalOptions="FillAndExpand"
-               TextColor="#303440"
-               FontAttributes="Bold"/>
-            </StackLayout>
-        </ListView.Header>
-        <!--Built in Cells-->
-        <!--<ListView.ItemTemplate>
-      <DataTemplate>
-        <TextCell Text="{Binding Text}"
-                  Detail="{Binding Detail}"/>
-      </DataTemplate>
-    </ListView.ItemTemplate>-->
-
-        <!--Custom View Cells-->
 
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
                     <StackLayout>
+                        <Image Source="{Binding DefaultImage}" />
                         <Label Text="{Binding Text}" TextColor="#303440" FontAttributes="Bold"
                    Style="{DynamicResource ListItemTextStyle}" />
                         <Label Text="{Binding Detail}" 
@@ -49,18 +26,5 @@
                 </ViewCell>
             </DataTemplate>
         </ListView.ItemTemplate>
-
-        <ListView.Footer>
-            <StackLayout Padding="10"
-                   Orientation="Horizontal"
-                   HorizontalOptions="FillAndExpand"
-                   BackgroundColor="#dadada">
-                <Label Text="Footer" 
-               HorizontalTextAlignment="Center" 
-               HorizontalOptions="FillAndExpand" 
-               TextColor="Black"
-               FontAttributes="Bold"/>
-            </StackLayout>
-        </ListView.Footer>
     </ListView>
 </ContentPage>
