@@ -32,7 +32,14 @@ namespace App1.Views
             if (e.SelectedItem == null)
                 return;
 
-            await DisplayAlert("Selected", e.SelectedItem.ToString(), "OK");
+
+            var obj = e.SelectedItem as ItemDetails;
+
+            //await DisplayAlert("Selected", e.SelectedItem.ToString(), "OK");
+
+            var answer = await DisplayAlert("Levantate Chévere", "Ver noticia completa.", "Si", "No");
+            if (answer)
+                Device.OpenUri(new Uri(obj.Link));
 
             //Deselect Item
             ((ListView)sender).SelectedItem = null;
@@ -62,8 +69,7 @@ namespace App1.Views
             {
                 Items = new ObservableCollection<ItemDetails>(new[]
                    {
-                        new ItemDetails { Text = "TITULO EN GRANDE Y LARGO", Detail = "Africa & Asia Africa & Asia Africa & Asia Africa & Asia" +
-                        "Africa & Asia Africa & Asia Africa & Asia", ImageUrl = "Down.png" },
+                        new ItemDetails { Text = "Desliza y Actualiza noticias Chéveres", Detail = "", ImageUrl = "Down.png" },
                      });
                 Settings.ListNoticias = Items;
             }
@@ -127,9 +133,10 @@ namespace App1.Views
                          {
                              Text = (string)i.Element("title"),
                              Detail = (string)i.Element("description"),
+                             Link = (string)i.Element("link"),
                          });
 
-            if(Items.Count <= 1) Items.Clear();
+            if (Items.Count <= 1) Items.Clear();
             if (query.Count() > Items.Count)
             {
                 foreach (var item in query)

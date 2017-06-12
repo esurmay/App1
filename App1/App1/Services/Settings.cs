@@ -26,6 +26,9 @@ namespace App1.Services
         public string Text { get; set; }
         public string Detail { get; set; }
         public string ImageUrl { get; set; }
+        public string Link { get; set; }
+
+        
 
         public override string ToString() => Text;
     }
