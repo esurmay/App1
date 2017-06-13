@@ -19,6 +19,12 @@ namespace App1.Services
             get;
             set;
         }
+
+        public static System.Collections.ObjectModel.ObservableCollection<ItemDetails> ListPatrocinantes
+        {
+            get;
+            set;
+        }
     }
 
     public class ItemDetails
