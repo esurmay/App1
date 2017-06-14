@@ -123,14 +123,15 @@ namespace App1.Views
                 }
             }
             responseString = responseString.TrimStart();
-            var query = XDocument.Parse(responseString)
+            List<ItemDetails> query = XDocument.Parse(responseString)
                          .Descendants("item")
                          .Select(i => new ItemDetails
                          {
                              Text = (string)i.Element("title"),
-                             Detail = (string)i.Element("description"),
-                             Link = (string)i.Element("link"),
-                         });
+                             Detail = Convert.ToDateTime((string)i.Element("pubDate")).ToString("dd/MM/yyyy"),
+                             //Detail = (string)i.Element("description"),
+                             //Link = (string)i.Element("link"),
+                         }).ToList();
 
             if (Items.Count <= 1) Items.Clear();
             if (query.Count() > Items.Count)

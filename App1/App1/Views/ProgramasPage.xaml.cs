@@ -99,8 +99,9 @@ namespace App1.Views
                          .Select(i => new ItemDetails
                          {
                              Text = (string)i.Element("title"),
-                             Detail = (string)i.Element("description"),
-                             Link = (string)i.Element("link"),
+                             Detail = Convert.ToDateTime((string)i.Element("pubDate")).ToString("dd/MM/yyyy"),
+                             //Detail = (string)i.Element("description"),
+                             //Link = (string)i.Element("link"),
                          });
 
             if (Items.Count <= 1) Items.Clear();
