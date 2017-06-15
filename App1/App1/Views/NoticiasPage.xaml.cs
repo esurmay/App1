@@ -12,6 +12,7 @@ using System.Xml.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using App1.Services;
+using Plugin.LocalNotifications;
 
 namespace App1.Views
 {
@@ -39,6 +40,22 @@ namespace App1.Views
 
             //Deselect Item
             ((ListView)sender).SelectedItem = null;
+        }
+
+        async void SendButtonClicked(object sender, EventArgs e)
+        {
+            try
+            {
+                //var Notifier = CrossLocalNotifications.Current;
+                //Notifier.Show("Notification Title", "Notification Message");
+                 CrossLocalNotifications.Current.Show("Titulo", "Mensaje", 1, DateTime.Now.AddSeconds(5));
+                await Task.Delay(2000);
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
         }
 
     }

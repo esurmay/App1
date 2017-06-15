@@ -1,4 +1,5 @@
 ﻿using App1.Services;
+using Plugin.LocalNotifications;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -40,6 +41,7 @@ namespace App1.Views
             //Deselect Item
             ((ListView)sender).SelectedItem = null;
         }
+
     }
 
 

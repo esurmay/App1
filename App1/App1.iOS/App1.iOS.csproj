@@ -94,6 +94,12 @@
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Plugin.LocalNotifications, Version=2.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xam.Plugins.Notifier.2.1.0\lib\Xamarin.iOS10\Plugin.LocalNotifications.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.LocalNotifications.Abstractions, Version=2.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xam.Plugins.Notifier.2.1.0\lib\Xamarin.iOS10\Plugin.LocalNotifications.Abstractions.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
