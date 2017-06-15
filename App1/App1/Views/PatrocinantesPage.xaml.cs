@@ -61,7 +61,7 @@ namespace App1.Views
 
         public PatrocinantesPageViewModel()
         {
-            if (Settings.ListProgramas == null)
+            if (Settings.ListPatrocinantes == null)
             {
                 Items = new ObservableCollection<ItemDetails>(new[]
                    {
@@ -108,7 +108,7 @@ namespace App1.Views
             {
                 foreach (var item in query)
                     Items.Add(item);
-                Settings.ListProgramas = Items;
+                Settings.ListPatrocinantes = Items;
             }
             IsBusy = false;
         }
