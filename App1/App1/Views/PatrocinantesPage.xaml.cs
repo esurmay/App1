@@ -1,4 +1,5 @@
-﻿using System;
+﻿using App1.Services;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -11,22 +12,19 @@ using System.Windows.Input;
 using System.Xml.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using App1.Services;
-using Plugin.LocalNotifications;
 
 namespace App1.Views
 {
-
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class NoticiasPage : ContentPage
+    public partial class PatrocinantesPage : ContentPage
     {
-        public NoticiasPage()
+        public PatrocinantesPage()
         {
             InitializeComponent();
-            BindingContext = new NoticiasPageViewModel();
+            BindingContext = new PatrocinantesPageViewModel();
         }
         void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
-          => ((ListView)sender).SelectedItem = null;
+                  => ((ListView)sender).SelectedItem = null;
 
         async void Handle_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
@@ -34,7 +32,7 @@ namespace App1.Views
                 return;
 
             var obj = e.SelectedItem as ItemDetails;
-            var answer = await DisplayAlert("Levantate Chévere", "Ver noticia completa.", "Si", "No");
+            var answer = await DisplayAlert("Levantate Chévere", "Ver  completa.", "Si", "No");
             if (answer)
                 Device.OpenUri(new Uri(obj.Link));
 
@@ -42,63 +40,47 @@ namespace App1.Views
             ((ListView)sender).SelectedItem = null;
         }
 
-        async void SendButtonClicked(object sender, EventArgs e)
-        {
-            try
-            {
-                //var Notifier = CrossLocalNotifications.Current;
-                //Notifier.Show("Notification Title", "Notification Message");
-                 CrossLocalNotifications.Current.Show("Titulo", "Mensaje", 1, DateTime.Now.AddSeconds(5));
-                await Task.Delay(2000);
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
-        }
-
     }
 
 
-    class NoticiasPageViewModel : INotifyPropertyChanged
+
+    class PatrocinantesPageViewModel : INotifyPropertyChanged
     {
         public ObservableCollection<ItemDetails> Items
         {
             get
             {
-                return Settings.ListNoticias ?? new ObservableCollection<ItemDetails>();
+                return Settings.ListPatrocinantes ?? new ObservableCollection<ItemDetails>();
             }
             set
             {
-                Settings.ListNoticias = value;
+                Settings.ListPatrocinantes = value;
                 RaisePropertyChanged();
             }
         }
 
-        public NoticiasPageViewModel()
+        public PatrocinantesPageViewModel()
         {
-            if (Settings.ListNoticias == null)
+            if (Settings.ListProgramas == null)
             {
                 Items = new ObservableCollection<ItemDetails>(new[]
                    {
                         new ItemDetails { Text = "Desliza y Actualiza noticias Chéveres", Detail = "", ImageUrl = "Down.png" },
                      });
-                Settings.ListNoticias = Items;
+                Settings.ListPatrocinantes = Items;
             }
 
             RefreshDataCommand = new Command(
-                async () => await GetFeedNews());
+                async () => await GetFeedPatrocinantes());
         }
 
         public ICommand RefreshDataCommand { get; }
 
-
-        async Task GetFeedNews()
+        async Task GetFeedPatrocinantes()
         {
             IsBusy = true;
 
-            string url = "http://levantatechevere.es/category/noticias/feed/";
+            string url = "http://levantatechevere.es/category/patrocinantes/feed/";
             string responseString = string.Empty;
 
             using (var client = new HttpClient())
@@ -111,7 +93,7 @@ namespace App1.Views
                 }
             }
             responseString = responseString.TrimStart();
-            List<ItemDetails> query = XDocument.Parse(responseString)
+            var query = XDocument.Parse(responseString)
                          .Descendants("item")
                          .Select(i => new ItemDetails
                          {
@@ -119,14 +101,14 @@ namespace App1.Views
                              Detail = Convert.ToDateTime((string)i.Element("pubDate")).ToString("dd/MM/yyyy"),
                              //Detail = (string)i.Element("description"),
                              //Link = (string)i.Element("link"),
-                         }).ToList();
+                         });
 
             if (Items.Count <= 1) Items.Clear();
             if (query.Count() > Items.Count)
             {
                 foreach (var item in query)
                     Items.Add(item);
-                Settings.ListNoticias = Items;
+                Settings.ListProgramas = Items;
             }
             IsBusy = false;
         }
@@ -157,28 +139,14 @@ namespace App1.Views
 
         #endregion
 
+
         public class Item
         {
             public string Text { get; set; }
             public string Detail { get; set; }
-            public string ImageUrl { get; set; }
 
             public override string ToString() => Text;
         }
 
-        public class Grouping<K, T> : ObservableCollection<T>
-        {
-            public K Key { get; private set; }
-
-            public Grouping(K key, IEnumerable<T> items)
-            {
-                Key = key;
-                foreach (var item in items)
-                    this.Items.Add(item);
-            }
-        }
-
-
     }
-
 }

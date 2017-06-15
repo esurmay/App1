@@ -34,7 +34,7 @@ namespace App1.Views
                 return;
 
             var obj = e.SelectedItem as ItemDetails;
-            var answer = await DisplayAlert("Levantate Chévere", "Ver noticia completa.", "Si", "No");
+            var answer = await DisplayAlert("Levantate Chévere", "Ver programa.", "Si", "No");
             if (answer)
                 Device.OpenUri(new Uri(obj.Link));
 
