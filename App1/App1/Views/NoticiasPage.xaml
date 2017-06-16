@@ -4,7 +4,6 @@
              x:Class="App1.Views.NoticiasPage"
              Title="NoticiasPage">
     <StackLayout>
-        <Button x:Name="SendButton" Text="Send" Clicked="SendButtonClicked" />
         <ListView x:Name="LVNoticias" ItemsSource="{Binding Items}" 
             ItemTapped="Handle_ItemTapped"
             ItemSelected="Handle_ItemSelected"

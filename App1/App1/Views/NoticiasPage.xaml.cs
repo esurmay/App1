@@ -42,20 +42,6 @@ namespace App1.Views
             ((ListView)sender).SelectedItem = null;
         }
 
-        async void SendButtonClicked(object sender, EventArgs e)
-        {
-            try
-            {
-                 CrossLocalNotifications.Current.Show("Titulo", "Mensaje", 1, DateTime.Now.AddSeconds(5));
-                await Task.Delay(1000);
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
-        }
-
     }
 
 
