@@ -46,10 +46,8 @@ namespace App1.Views
         {
             try
             {
-                //var Notifier = CrossLocalNotifications.Current;
-                //Notifier.Show("Notification Title", "Notification Message");
                  CrossLocalNotifications.Current.Show("Titulo", "Mensaje", 1, DateTime.Now.AddSeconds(5));
-                await Task.Delay(2000);
+                await Task.Delay(1000);
             }
             catch (Exception ex)
             {
