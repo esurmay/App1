@@ -82,41 +82,12 @@ namespace App1.Views
         async Task GetFeedPrograms()
         {
             IsBusy = true;
-
             string url = "http://levantatechevere.es/category/programas/feed/";
-            string responseString = string.Empty;
-
-            using (var client = new HttpClient())
-            {
-                var response = client.GetAsync(url).Result;
-                if (response.IsSuccessStatusCode)
-                {
-                    var responseContent = response.Content;
-                    responseString = responseContent.ReadAsStringAsync().Result;
-                }
-            }
-            responseString = responseString.TrimStart();
-            var query = XDocument.Parse(responseString)
-                         .Descendants("item")
-                         .Select(i => new ItemDetails
-                         {
-                             Text = (string)i.Element("title"),
-                             Detail = Convert.ToDateTime((string)i.Element("pubDate")).ToString("dd/MM/yyyy"),
-                             //Detail = (string)i.Element("description"),
-                             //Link = (string)i.Element("link"),
-                         });
-
-            if (Items.Count <= 1) Items.Clear();
-            if (query.Count() > Items.Count)
-            {
-                foreach (var item in query)
-                    Items.Add(item);
-                Settings.ListProgramas = Items;
-            }
+            await Task.Run(() => Settings.GetFeeds("Programas", url, Items));
             IsBusy = false;
         }
 
-    
+
         public bool IsBusy
         {
             get

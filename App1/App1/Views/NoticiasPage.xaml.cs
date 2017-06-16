@@ -95,37 +95,8 @@ namespace App1.Views
         async Task GetFeedNews()
         {
             IsBusy = true;
-
             string url = "http://levantatechevere.es/category/noticias/feed/";
-            string responseString = string.Empty;
-
-            using (var client = new HttpClient())
-            {
-                var response = client.GetAsync(url).Result;
-                if (response.IsSuccessStatusCode)
-                {
-                    var responseContent = response.Content;
-                    responseString = responseContent.ReadAsStringAsync().Result;
-                }
-            }
-            responseString = responseString.TrimStart();
-            List<ItemDetails> query = XDocument.Parse(responseString)
-                         .Descendants("item")
-                         .Select(i => new ItemDetails
-                         {
-                             Text = (string)i.Element("title"),
-                             Detail = Convert.ToDateTime((string)i.Element("pubDate")).ToString("dd/MM/yyyy"),
-                             //Detail = (string)i.Element("description"),
-                             //Link = (string)i.Element("link"),
-                         }).ToList();
-
-            if (Items.Count <= 1) Items.Clear();
-            if (query.Count() > Items.Count)
-            {
-                foreach (var item in query)
-                    Items.Add(item);
-                Settings.ListNoticias = Items;
-            }
+            await Task.Run(() => Settings.GetFeeds("Noticias", url, Items));
             IsBusy = false;
         }
 
