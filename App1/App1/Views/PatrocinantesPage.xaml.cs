@@ -32,7 +32,7 @@ namespace App1.Views
                 return;
 
             var obj = e.SelectedItem as ItemDetails;
-            var answer = await DisplayAlert("Levantate Chévere", "Ver  nuestros patrocinantes.", "Si", "No");
+            var answer = await DisplayAlert("Levantate Chévere", "Ver nuestros patrocinantes.", "Si", "No");
             if (answer)
                 Device.OpenUri(new Uri(obj.Link));
 
@@ -65,7 +65,7 @@ namespace App1.Views
             {
                 Items = new ObservableCollection<ItemDetails>(new[]
                    {
-                        new ItemDetails { Text = "Desliza y Actualiza noticias Chéveres", Detail = "", ImageUrl = "Down.png" },
+                        new ItemDetails { Text = "", Detail = "", ImageUrl = "Down.png" },
                      });
                 Settings.ListPatrocinantes = Items;
             }

@@ -66,7 +66,7 @@ namespace App1.Views
             {
                 Items = new ObservableCollection<ItemDetails>(new[]
                    {
-                        new ItemDetails { Text = "Desliza y Actualiza noticias Chéveres", Detail = "", ImageUrl = "Down.png" },
+                        new ItemDetails { Text = "", Detail = "", ImageUrl = "Down.png" },
                      });
                 Settings.ListNoticias = Items;
             }
