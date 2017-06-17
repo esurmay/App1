@@ -33,10 +33,12 @@ namespace App1.Views
             if (e.SelectedItem == null)
                 return;
 
-            var obj = e.SelectedItem as ItemDetails;
-            var answer = await DisplayAlert("Levantate Chévere", "Ver programa.", "Si", "No");
-            if (answer)
-                Device.OpenUri(new Uri(obj.Link));
+            await Navigation.PushAsync(new DetallesPage());
+
+            //var obj = e.SelectedItem as ItemDetails;
+            //var answer = await DisplayAlert("Levantate Chévere", "Ver noticia completa.", "Si", "No");
+            //if (answer)
+            //    Device.OpenUri(new Uri(obj.Link));
 
             //Deselect Item
             ((ListView)sender).SelectedItem = null;
