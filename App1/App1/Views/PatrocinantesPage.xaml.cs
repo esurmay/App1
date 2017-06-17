@@ -65,7 +65,7 @@ namespace App1.Views
             {
                 Items = new ObservableCollection<ItemDetails>(new[]
                    {
-                        new ItemDetails { Text = "", Detail = "", ImageUrl = "Down.png" },
+                        new ItemDetails { Text = "", Detail = "", ImageUrl = "Pulldown.png" },
                      });
                 Settings.ListPatrocinantes = Items;
             }

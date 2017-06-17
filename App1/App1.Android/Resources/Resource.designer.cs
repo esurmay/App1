@@ -2207,8 +2207,8 @@ namespace App1.Droid
 			// aapt resource value: 0x7f0200a2
 			public const int mr_ic_play_light = 2130837666;
 			
-			// aapt resource value: 0x7f0200a6
-			public const int notification_template_icon_bg = 2130837670;
+			// aapt resource value: 0x7f0200a7
+			public const int notification_template_icon_bg = 2130837671;
 			
 			// aapt resource value: 0x7f0200a3
 			public const int plugin_lc_smallicon = 2130837667;
@@ -2217,7 +2217,10 @@ namespace App1.Droid
 			public const int profile_generic = 2130837668;
 			
 			// aapt resource value: 0x7f0200a5
-			public const int slideout = 2130837669;
+			public const int Pulldown = 2130837669;
+			
+			// aapt resource value: 0x7f0200a6
+			public const int slideout = 2130837670;
 			
 			static Drawable()
 			{
