@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,7 +32,7 @@ namespace App1.Services
 
         public static void GetFeeds(string PageName, string Url, ObservableCollection<ItemDetails> Items)
         {
-            string responseString = string.Empty;
+           string responseString = string.Empty;
 
             using (var client = new HttpClient())
             {
@@ -51,6 +52,7 @@ namespace App1.Services
                                  {
                                      Text = (string)i.Element("title"),
                                      Detail = Convert.ToDateTime((string)i.Element("pubDate")).ToString("dd/MM/yyyy"),
+                                     Encoded = (string)i.Element("{http://purl.org/rss/1.0/modules/content/}encoded"), //<-- ***
                                      //Detail = (string)i.Element("description"),
                                      //Link = (string)i.Element("link"),
                                  }).ToList();
@@ -70,7 +72,7 @@ namespace App1.Services
                                 ListPatrocinantes = Items;
                                 break;
                             case "Programas":
-                                ListProgramas = Items;
+                                ListProgramas = Items; 
                                 break;
                             default:
                                 break;
@@ -86,14 +88,14 @@ namespace App1.Services
 
     }
 
+
     public class ItemDetails
     {
         public string Text { get; set; }
         public string Detail { get; set; }
         public string ImageUrl { get; set; }
         public string Link { get; set; }
-
-
+        public string Encoded { get; set; }
 
         public override string ToString() => Text;
     }

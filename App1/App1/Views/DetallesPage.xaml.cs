@@ -20,6 +20,8 @@ namespace App1.Views
         {
             InitializeComponent();
             BindingContext = new DetallesPageViewModel();
+
+
         }
     }
 
@@ -29,15 +31,40 @@ namespace App1.Views
         public DetallesPageViewModel()
         {
             IncreaseCountCommand = new Command(IncreaseCount);
+
         }
+
+        public DetallesPageViewModel(string urlVideo)
+        {
+            IncreaseCountCommand = new Command(IncreaseCount);
+            //UrlVideo = urlVideo;
+
+            var htmlSource = new HtmlWebViewSource();
+            string HTML = @"<html>
+                              <body>
+                                <iframe frameborder='0' src='https://www.youtube.com/embed/XGSy3_Czz8k?autoplay=1'>
+                                </iframe>
+                              </body>
+                            </html> ";
+
+            htmlSource.Html = HTML;
+           // LNBrowser.Source = htmlSource;
+        }
+
 
         int count;
 
         string countDisplay = "You clicked 0 times.";
+        string _htmlSourceVideo = string.Empty;
         public string CountDisplay
         {
             get { return countDisplay; }
             set { countDisplay = value; OnPropertyChanged(); }
+        }
+        public string HtmlSourceVideo
+        {
+            get { return _htmlSourceVideo; }
+            set { _htmlSourceVideo = value; OnPropertyChanged(); }
         }
 
         public ICommand IncreaseCountCommand { get; }
