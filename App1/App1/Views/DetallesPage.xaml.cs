@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Plugin.LocalNotifications;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -23,6 +24,11 @@ namespace App1.Views
 
 
         }
+        public DetallesPage(string contenido)
+        {
+            InitializeComponent();
+            BindingContext = new DetallesPageViewModel(contenido);
+        }
     }
 
     class DetallesPageViewModel : INotifyPropertyChanged
@@ -34,34 +40,35 @@ namespace App1.Views
 
         }
 
-        public DetallesPageViewModel(string urlVideo)
+        public DetallesPageViewModel(string contenido)
         {
             IncreaseCountCommand = new Command(IncreaseCount);
             //UrlVideo = urlVideo;
 
             var htmlSource = new HtmlWebViewSource();
             string HTML = @"<html>
-                              <body>
-                                <iframe frameborder='0' src='https://www.youtube.com/embed/XGSy3_Czz8k?autoplay=1'>
-                                </iframe>
-                              </body>
-                            </html> ";
+                              <body>" + 
+                                contenido + 
+                              "</body>" +
+                           "</html> ";
 
             htmlSource.Html = HTML;
-           // LNBrowser.Source = htmlSource;
+            HtmlSourceVideo = htmlSource;
+            // LNBrowser.Source = htmlSource;
+            //CrossLocalNotifications.Current.Show("Titulo", "Mensaje en Modo RELEASE. LOGRADO!!", 1, DateTime.Now.AddSeconds(10));
         }
 
 
         int count;
 
         string countDisplay = "You clicked 0 times.";
-        string _htmlSourceVideo = string.Empty;
+        HtmlWebViewSource _htmlSourceVideo;
         public string CountDisplay
         {
             get { return countDisplay; }
             set { countDisplay = value; OnPropertyChanged(); }
         }
-        public string HtmlSourceVideo
+        public HtmlWebViewSource HtmlSourceVideo
         {
             get { return _htmlSourceVideo; }
             set { _htmlSourceVideo = value; OnPropertyChanged(); }
