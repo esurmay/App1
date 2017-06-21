@@ -47,7 +47,7 @@ namespace App1.Views
 
             var htmlSource = new HtmlWebViewSource();
             string HTML = @"<html>
-                              <body>" + 
+                               <body style='font-family:verdana; font-size:90%;'>" + 
                                 contenido + 
                               "</body>" +
                            "</html> ";
