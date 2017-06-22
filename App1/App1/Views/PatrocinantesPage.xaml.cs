@@ -31,7 +31,8 @@ namespace App1.Views
             if (e.SelectedItem == null)
                 return;
 
-            await Navigation.PushAsync(new DetallesPage());
+            var obj = e.SelectedItem as ItemDetails;
+            await Navigation.PushAsync(new DetallesPage(obj.Encoded));
 
             //var obj = e.SelectedItem as ItemDetails;
             //var answer = await DisplayAlert("Levantate Chévere", "Ver noticia completa.", "Si", "No");

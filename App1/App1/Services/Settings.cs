@@ -57,6 +57,13 @@ namespace App1.Services
                                      //Link = (string)i.Element("link"),
                                  }).ToList();
 
+                query.Select(x =>
+                {
+                    string html = WebUtility.HtmlEncode(x.Encoded);
+                    x.Encoded = x.Encoded.Split('/')[4].ToString();
+                    return x;
+                }).ToList();
+
                 if (Items.Count <= 1) Items.Clear();
                 if (query.Count() > Items.Count)
                 {
@@ -72,7 +79,8 @@ namespace App1.Services
                                 ListPatrocinantes = Items;
                                 break;
                             case "Programas":
-                                ListProgramas = Items; 
+                                ListProgramas = Items;
+
                                 break;
                             default:
                                 break;
