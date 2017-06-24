@@ -5,17 +5,35 @@
              x:Class="App1.Views.InicioPage"
              Title="Inicio">
     <xfg:ContentPageGloss.BackgroundGradient>
-        <xfg:Gradient Rotation="150">
-            <xfg:GradientStep StepColor="White" StepPercentage="0" />
-            <xfg:GradientStep StepColor="White" StepPercentage=".5" />
-            <xfg:GradientStep StepColor="#ccd9ff" StepPercentage="1" />
+        <xfg:Gradient Rotation="180">
+            <xfg:GradientStep StepColor="#ccd9ff" StepPercentage="0" />
+            <xfg:GradientStep StepColor="#ccd9ff" StepPercentage=".5" />
+            <xfg:GradientStep StepColor="White" StepPercentage="1" />
         </xfg:Gradient>
     </xfg:ContentPageGloss.BackgroundGradient>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="90" />
+            <RowDefinition Height="100" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+           
+        </Grid.ColumnDefinitions>
+        <Image Source="LogoLevantate.png" Grid.Row="0" HorizontalOptions="Center" Grid.Column="1"/>
+        <Label Grid.Row="1" Grid.Column="1" VerticalOptions="End" HorizontalOptions="Center" FontSize="20" Text="Con tu pana Hardiman" FontFamily="Open Sans" FontAttributes="Italic" TextColor="#112A75" HorizontalTextAlignment="Center" />
+        <Label Grid.Row="2" Grid.Column="1" Text="Lunes a Viernes"  HorizontalTextAlignment="Center" TextColor="Black" />
+        <Label Grid.Row="3" Grid.Column="1" Text="08:30 am - 09:45 am"  HorizontalTextAlignment="Center" TextColor="Black" />
+
+        <Label Grid.Row="4" Grid.Column="1"  Text="https://www.facebook.com/levancheve" VerticalOptions="End"  HorizontalTextAlignment="Center" TextColor="Gray" />
+        <Label Grid.Row="5" Grid.Column="1"  Text="https://www.instagram.com/levantatechevere/" VerticalOptions="End"  HorizontalTextAlignment="Center" TextColor="Gray" />
+        <Label Grid.Row="6" Grid.Column="1"  Text="https://www.youtube.com/c/levantatechevere" VerticalOptions="End"  HorizontalTextAlignment="Center" TextColor="Gray" />
+    </Grid>
     
-    <StackLayout>
-        <Image Source="LogoLevantate.png" />
-        <Label FontSize="Large" Text="Con tu pana Hardiman" FontFamily="Open Sans" FontAttributes="Italic" TextColor="#112A75" HorizontalTextAlignment="Center" />
-        <Label Text="08:30 am - 09:45 am"  HorizontalTextAlignment="Center" />
-        <Image Source="INICIOpage.png" VerticalOptions="Center" HorizontalOptions="Center"/>
-    </StackLayout>
+   
 </ContentPage>
