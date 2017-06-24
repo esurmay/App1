@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
@@ -57,12 +58,22 @@ namespace App1.Services
                                      //Link = (string)i.Element("link"),
                                  }).ToList();
 
-                query.Select(x =>
+                if (PageName == "Programas")
                 {
-                    string html = WebUtility.HtmlEncode(x.Encoded);
-                    x.Encoded = x.Encoded.Split('/')[4].ToString();
-                    return x;
-                }).ToList();
+                    int iterador = 0;
+                    query.Select(x =>
+                    {
+                        iterador++;
+                        string original_text = x.Encoded;
+                        string matchString = Regex.Match(original_text, "src=[\"'](.+?)[\"']", RegexOptions.IgnoreCase).Groups[1].Value;
+                        string urlCodeVideo = matchString.Split('/')[matchString.Split('/').Length - 1].ToString();
+                        string tumbnails = "https://img.youtube.com/vi/" + urlCodeVideo + "/" + iterador + ".jpg";
+
+                        x.Thumbnail = tumbnails;
+
+                        return x;
+                    }).ToList(); 
+                }
 
                 if (Items.Count <= 1) Items.Clear();
                 if (query.Count() > Items.Count)
@@ -104,6 +115,7 @@ namespace App1.Services
         public string ImageUrl { get; set; }
         public string Link { get; set; }
         public string Encoded { get; set; }
+        public string Thumbnail { get; set; }        
 
         public override string ToString() => Text;
     }
