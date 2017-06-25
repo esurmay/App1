@@ -20,6 +20,26 @@ namespace App1.Views
         {
             InitializeComponent();
         }
+
+        void OnTapGestureRecognizerTapped(object sender, EventArgs args)
+        {
+            var imageSender = (Image)sender;
+            var source = imageSender.Source as FileImageSource;
+            if (source.File == "imgFB.png")
+            {
+                Device.OpenUri(new Uri("https://www.facebook.com/levancheve"));
+            }
+            else if (source.File == "imgINS.png")
+            {
+                Device.OpenUri(new Uri("https://www.instagram.com/levantatechevere/"));
+            }
+            else if (source.File == "imgYT.png")
+            {
+                Device.OpenUri(new Uri("https://www.youtube.com/c/levantatechevere"));
+            }
+        }
     }
+
+
 
 }

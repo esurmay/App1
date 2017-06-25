@@ -11,29 +11,38 @@
             <xfg:GradientStep StepColor="White" StepPercentage="1" />
         </xfg:Gradient>
     </xfg:ContentPageGloss.BackgroundGradient>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="90" />
-            <RowDefinition Height="100" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-           
-        </Grid.ColumnDefinitions>
-        <Image Source="LogoLevantate.png" Grid.Row="0" HorizontalOptions="Center" Grid.Column="1"/>
-        <Label Grid.Row="1" Grid.Column="1" VerticalOptions="End" HorizontalOptions="Center" FontSize="20" Text="Con tu pana Hardiman" FontFamily="Open Sans" FontAttributes="Italic" TextColor="#112A75" HorizontalTextAlignment="Center" />
-        <Label Grid.Row="2" Grid.Column="1" Text="Lunes a Viernes"  HorizontalTextAlignment="Center" TextColor="Black" />
-        <Label Grid.Row="3" Grid.Column="1" Text="08:30 am - 09:45 am"  HorizontalTextAlignment="Center" TextColor="Black" />
+    <StackLayout>
+        <StackLayout HorizontalOptions="Center" Orientation="Horizontal" VerticalOptions="Start">
+            <Image Source="LogoLevantate.png"  HorizontalOptions="Center"/>
+        </StackLayout>
+        <StackLayout VerticalOptions="CenterAndExpand">
+            <Label FontSize="20" Text="Con tu pana Hardiman" FontFamily="Open Sans" FontAttributes="Italic" TextColor="#112A75" HorizontalTextAlignment="Center" />
+            <Label Text="Lunes a Viernes"  HorizontalTextAlignment="Center" TextColor="Black" />
+            <Label Text="08:30 am - 09:45 am"  HorizontalTextAlignment="Center" TextColor="Black" />
+        </StackLayout>
+        <StackLayout HorizontalOptions="Center" Orientation="Horizontal" VerticalOptions="End">
+            <Image Source="imgFB.png">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Tapped="OnTapGestureRecognizerTapped"
+                        NumberOfTapsRequired="1" />
+                </Image.GestureRecognizers>
+            </Image>
+            <Image Source="imgINS.png">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Tapped="OnTapGestureRecognizerTapped"
+                        NumberOfTapsRequired="1" />
+                </Image.GestureRecognizers>
+            </Image>
+            <Image Source="imgYT.png" >
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Tapped="OnTapGestureRecognizerTapped"
+                        NumberOfTapsRequired="1" />
+                </Image.GestureRecognizers>
+            </Image>
+        </StackLayout>
+    </StackLayout>
 
-        <Label Grid.Row="4" Grid.Column="1"  Text="https://www.facebook.com/levancheve" VerticalOptions="End"  HorizontalTextAlignment="Center" TextColor="Gray" />
-        <Label Grid.Row="5" Grid.Column="1"  Text="https://www.instagram.com/levantatechevere/" VerticalOptions="End"  HorizontalTextAlignment="Center" TextColor="Gray" />
-        <Label Grid.Row="6" Grid.Column="1"  Text="https://www.youtube.com/c/levantatechevere" VerticalOptions="End"  HorizontalTextAlignment="Center" TextColor="Gray" />
-    </Grid>
-    
-   
 </ContentPage>
