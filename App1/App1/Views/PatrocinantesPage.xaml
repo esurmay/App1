@@ -12,7 +12,6 @@
             IsRefreshing="{Binding IsBusy, Mode=TwoWay}"
             RefreshCommand="{Binding RefreshDataCommand}"
               SeparatorColor="Blue">
-
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
