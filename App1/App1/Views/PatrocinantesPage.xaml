@@ -17,7 +17,7 @@
                 <ViewCell>
                     <StackLayout>
                         <Image Source="{Binding ImageUrl}" />
-                        <Label Text="{Binding Text}" TextColor="#303440" FontAttributes="Bold"
+                        <Label Text="{Binding Text}" TextColor="#303440" FontAttributes="Bold" FontSize="Medium"
                    Style="{DynamicResource ListItemTextStyle}" />
                         <Label Text="{Binding Detail}" 
                    Style="{DynamicResource ListItemDetailTextStyle}"/>

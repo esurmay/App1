@@ -58,22 +58,22 @@ namespace App1.Services
                                      //Link = (string)i.Element("link"),
                                  }).ToList();
 
-                if (PageName == "Programas")
-                {
-                    int iterador = 0;
-                    query.Select(x =>
-                    {
-                        iterador++;
-                        string original_text = x.Encoded;
-                        string matchString = Regex.Match(original_text, "src=[\"'](.+?)[\"']", RegexOptions.IgnoreCase).Groups[1].Value;
-                        string urlCodeVideo = matchString.Split('/')[matchString.Split('/').Length - 1].ToString();
-                        string tumbnails = "https://img.youtube.com/vi/" + urlCodeVideo + "/" + iterador + ".jpg";
+                //if (PageName == "Programas")
+                //{
+                //    int iterador = 0;
+                //    query.Select(x =>
+                //    {
+                //        iterador++;
+                //        string original_text = x.Encoded;
+                //        string matchString = Regex.Match(original_text, "src=[\"'](.+?)[\"']", RegexOptions.IgnoreCase).Groups[1].Value;
+                //        string urlCodeVideo = matchString.Split('/')[matchString.Split('/').Length - 1].ToString();
+                //        string tumbnails = "https://img.youtube.com/vi/" + urlCodeVideo + "/" + iterador + ".jpg";
 
-                        x.Thumbnail = tumbnails;
+                //        x.Thumbnail = tumbnails;
 
-                        return x;
-                    }).ToList(); 
-                }
+                //        return x;
+                //    }).ToList(); 
+                //}
 
                 if (Items.Count <= 1) Items.Clear();
                 if (query.Count() > Items.Count)

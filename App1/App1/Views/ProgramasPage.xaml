@@ -15,25 +15,26 @@
 
         <ListView.ItemTemplate>
             <DataTemplate>
-                <ImageCell TextColor="#303440" DetailColor="Gray"
-                            Text="{Binding Text}"
-                            Detail="{Binding Detail}"
-                            ImageSource="{Binding Thumbnail}"/>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-
-        <!--<ListView.ItemTemplate>
-            <DataTemplate>
                 <ViewCell>
                     <StackLayout>
                         <Image Source="{Binding Thumbnail}" />
-                        <Label Text="{Binding Text}" TextColor="#303440" FontAttributes="Bold"
+                        <Label Text="{Binding Text}" TextColor="#303440" FontAttributes="Bold" FontSize="Medium"
                    Style="{DynamicResource ListItemTextStyle}" />
                         <Label Text="{Binding Detail}" 
                    Style="{DynamicResource ListItemDetailTextStyle}"/>
                     </StackLayout>
                 </ViewCell>
             </DataTemplate>
+        </ListView.ItemTemplate>
+        
+        <!--<ListView.ItemTemplate>
+            <DataTemplate>
+                <ImageCell TextColor="#303440" DetailColor="Gray"
+                            Text="{Binding Text}"
+                            Detail="{Binding Detail}"
+                            ImageSource="{Binding Thumbnail}"/>
+            </DataTemplate>
         </ListView.ItemTemplate>-->
+
     </ListView>
 </ContentPage>
