@@ -5,6 +5,11 @@
              Title="Radio En Vivo">
 
     <StackLayout>
-        <WebView x:Name="LVBrowser"  HeightRequest="1000" WidthRequest="1000"/>
+        <Image Source="LogoLevantate.png" />
+        <Image Source="NoConnected.png" IsVisible="{Binding NoConectado}"/>
+        <Label x:Name="LblSinConexion" Text="Ups. Sin Conexión a Internet"  IsVisible="{Binding NoConectado}"
+                   HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="Medium"/>
+        <WebView x:Name="LVBrowser" Source="{Binding HTMLSource}"  HeightRequest="1000" WidthRequest="1000"/>
+
     </StackLayout>
 </ContentPage>

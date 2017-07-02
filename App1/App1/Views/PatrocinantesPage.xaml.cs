@@ -33,13 +33,6 @@ namespace App1.Views
 
             var obj = e.SelectedItem as ItemDetails;
             await Navigation.PushAsync(new DetallesPage(obj.Encoded));
-
-            //var obj = e.SelectedItem as ItemDetails;
-            //var answer = await DisplayAlert("Levantate Chévere", "Ver noticia completa.", "Si", "No");
-            //if (answer)
-            //    Device.OpenUri(new Uri(obj.Link));
-
-            //Deselect Item
             ((ListView)sender).SelectedItem = null;
         }
 
@@ -83,7 +76,8 @@ namespace App1.Views
         {
             IsBusy = true;
             string url = "http://levantatechevere.es/category/patrocinantes/feed/";
-            await Task.Run(() => Settings.GetFeeds("Patrocinantes", url, Items));
+            //string url = "levantatechevere.es/category/patrocinantes/feed/";
+            await Task.Run(() => Settings.GetFeedsAsync("Patrocinantes", url, Items));
             IsBusy = false;
         }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Plugin.Connectivity;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -31,56 +32,46 @@ namespace App1.Services
             set;
         }
 
-        public static void GetFeeds(string PageName, string Url, ObservableCollection<ItemDetails> Items)
+        public static async Task GetFeedsAsync(string PageName, string Url, ObservableCollection<ItemDetails> Items)
         {
-           string responseString = string.Empty;
-
-            using (var client = new HttpClient())
+            bool IsConnected = false;
+            if (CrossConnectivity.Current.IsConnected)
             {
-                var response = client.GetAsync(Url).Result;
-                if (response.IsSuccessStatusCode)
-                {
-                    var responseContent = response.Content;
-                    responseString = responseContent.ReadAsStringAsync().Result;
-                }
+                IsConnected = await CrossConnectivity.Current.IsRemoteReachable(Url, 80, 5000);
             }
-            responseString = responseString.TrimStart();
-            if (!string.IsNullOrEmpty(responseString))
+
+            if (Items.Count <= 1) Items.Clear();
+
+            if (IsConnected)
             {
-                List<ItemDetails> query = XDocument.Parse(responseString)
-                                 .Descendants("item")
-                                 .Select(i => new ItemDetails
-                                 {
-                                     Text = (string)i.Element("title"),
-                                     Detail = Convert.ToDateTime((string)i.Element("pubDate")).ToString("dd/MM/yyyy"),
-                                     Encoded = (string)i.Element("{http://purl.org/rss/1.0/modules/content/}encoded"), //<-- ***
-                                     //Detail = (string)i.Element("description"),
-                                     //Link = (string)i.Element("link"),
-                                 }).ToList();
+                string responseString = string.Empty;
 
-                //if (PageName == "Programas")
-                //{
-                //    int iterador = 0;
-                //    query.Select(x =>
-                //    {
-                //        iterador++;
-                //        string original_text = x.Encoded;
-                //        string matchString = Regex.Match(original_text, "src=[\"'](.+?)[\"']", RegexOptions.IgnoreCase).Groups[1].Value;
-                //        string urlCodeVideo = matchString.Split('/')[matchString.Split('/').Length - 1].ToString();
-                //        string tumbnails = "https://img.youtube.com/vi/" + urlCodeVideo + "/" + iterador + ".jpg";
-
-                //        x.Thumbnail = tumbnails;
-
-                //        return x;
-                //    }).ToList(); 
-                //}
-
-                if (Items.Count <= 1) Items.Clear();
-                if (query.Count() > Items.Count)
+                using (var client = new HttpClient())
                 {
-                    foreach (var item in query)
-                        Items.Add(item);
+                    var response = client.GetAsync(Url).Result;
+                    if (response.IsSuccessStatusCode)
                     {
+                        var responseContent = response.Content;
+                        responseString = responseContent.ReadAsStringAsync().Result;
+                    }
+                }
+                responseString = responseString.TrimStart();
+                if (!string.IsNullOrEmpty(responseString))
+                {
+                    List<ItemDetails> query = XDocument.Parse(responseString)
+                                     .Descendants("item")
+                                     .Select(i => new ItemDetails
+                                     {
+                                         Text = (string)i.Element("title"),
+                                         Detail = Convert.ToDateTime((string)i.Element("pubDate")).ToString("dd/MM/yyyy"),
+                                         Encoded = (string)i.Element("{http://purl.org/rss/1.0/modules/content/}encoded"), //<-- ***
+                                     }).ToList();
+
+                    if (query.Count() > Items.Count)
+                    {
+                        foreach (var item in query)
+                            Items.Add(item);
+
                         switch (PageName)
                         {
                             case "Noticias":
@@ -101,10 +92,9 @@ namespace App1.Services
             }
             else
             {
-                Items.Add(new ItemDetails { Text = "Ups estas sin conexion a internet." });
+                Items.Add(new ItemDetails { Thumbnail = "NoConnected.png", Text = "Ups. Sin conexión a internet." });
             }
         }
-
     }
 
 
@@ -115,7 +105,7 @@ namespace App1.Services
         public string ImageUrl { get; set; }
         public string Link { get; set; }
         public string Encoded { get; set; }
-        public string Thumbnail { get; set; }        
+        public string Thumbnail { get; set; }
 
         public override string ToString() => Text;
     }

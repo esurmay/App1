@@ -35,19 +35,9 @@ namespace App1.Views
 
             var obj = e.SelectedItem as ItemDetails;
             await Navigation.PushAsync(new DetallesPage(obj.Encoded));
-
-            //var obj = e.SelectedItem as ItemDetails;
-            //var answer = await DisplayAlert("Levantate Chévere", "Ver noticia completa.", "Si", "No");
-            //if (answer)
-            //    Device.OpenUri(new Uri(obj.Link));
-
-            //Deselect Item
             ((ListView)sender).SelectedItem = null;
         }
-
     }
-
-
 
     class ProgramasPageViewModel : INotifyPropertyChanged
     {
@@ -63,7 +53,6 @@ namespace App1.Views
                 RaisePropertyChanged();
             }
         }
-        public ObservableCollection<Grouping<string, Item>> ItemsGrouped { get; set; }
 
         public ProgramasPageViewModel()
         {
@@ -71,7 +60,7 @@ namespace App1.Views
             {
                 Items = new ObservableCollection<ItemDetails>(new[]
                    {
-                        new ItemDetails { Text = "", Detail = "", Thumbnail = "Pulldown.png" },
+                        new ItemDetails { Text = "", Detail = "", ImageUrl = "Pulldown.png" },
                      });
                 Settings.ListProgramas = Items;
             }
@@ -86,10 +75,10 @@ namespace App1.Views
         {
             IsBusy = true;
             string url = "http://levantatechevere.es/category/programas/feed/";
-            await Task.Run(() => Settings.GetFeeds("Programas", url, Items));
+            //string url = "levantatechevere.es/category/programas/feed/";
+            await Task.Run(() => Settings.GetFeedsAsync("Programas", url, Items));
             IsBusy = false;
         }
-
 
         public bool IsBusy
         {
@@ -117,24 +106,6 @@ namespace App1.Views
 
         #endregion
 
-
-        /*
-        bool busy;
-        public bool IsBusy
-        {
-            get { return busy; }
-            set
-            {
-                busy = value;
-                OnPropertyChanged();
-                ((Command)RefreshDataCommand).ChangeCanExecute();
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        void OnPropertyChanged([CallerMemberName]string propertyName = "") =>
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        */
         public class Item
         {
             public string Text { get; set; }
@@ -142,19 +113,6 @@ namespace App1.Views
 
             public override string ToString() => Text;
         }
-
-        public class Grouping<K, T> : ObservableCollection<T>
-        {
-            public K Key { get; private set; }
-
-            public Grouping(K key, IEnumerable<T> items)
-            {
-                Key = key;
-                foreach (var item in items)
-                    this.Items.Add(item);
-            }
-        }
-
 
     }
 }

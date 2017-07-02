@@ -35,16 +35,8 @@ namespace App1.Views
 
             var obj = e.SelectedItem as ItemDetails;
             await Navigation.PushAsync(new DetallesPage(obj.Encoded));
-
-            //var obj = e.SelectedItem as ItemDetails;
-            //var answer = await DisplayAlert("Levantate Chévere", "Ver noticia completa.", "Si", "No");
-            //if (answer)
-            //    Device.OpenUri(new Uri(obj.Link));
-
-            //Deselect Item
             ((ListView)sender).SelectedItem = null;
         }
-
     }
 
 
@@ -76,6 +68,7 @@ namespace App1.Views
 
             RefreshDataCommand = new Command(
                 async () => await GetFeedNews());
+           
         }
 
         public ICommand RefreshDataCommand { get; }
@@ -85,7 +78,8 @@ namespace App1.Views
         {
             IsBusy = true;
             string url = "http://levantatechevere.es/category/noticias/feed/";
-            await Task.Run(() => Settings.GetFeeds("Noticias", url, Items));
+            //string url = "levantatechevere.es/category/noticias/feed/";
+            await Task.Run(() => Settings.GetFeedsAsync("Noticias", url, Items));
             IsBusy = false;
         }
 
@@ -123,19 +117,6 @@ namespace App1.Views
 
             public override string ToString() => Text;
         }
-
-        public class Grouping<K, T> : ObservableCollection<T>
-        {
-            public K Key { get; private set; }
-
-            public Grouping(K key, IEnumerable<T> items)
-            {
-                Key = key;
-                foreach (var item in items)
-                    this.Items.Add(item);
-            }
-        }
-
 
     }
 
