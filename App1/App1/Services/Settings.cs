@@ -39,7 +39,7 @@ namespace App1.Services
             {
                 IsConnected = await CrossConnectivity.Current.IsRemoteReachable(Url, 80, 5000);
             }
-
+            //IsConnected = true;
             if (Items.Count <= 1) Items.Clear();
 
             if (IsConnected)
@@ -92,7 +92,7 @@ namespace App1.Services
             }
             else
             {
-                Items.Add(new ItemDetails { Thumbnail = "NoConnected.png", Text = "Ups. Sin conexión a internet." });
+                Items.Add(new ItemDetails { ImageUrl = "NoConnected.png", Thumbnail = "NoConnected.png", Text = "No Internet Connection" });
             }
         }
     }

@@ -17,7 +17,6 @@ namespace App1.Views
         {
             InitializeComponent();
             MasterPage.ListView.ItemSelected += ListView_ItemSelected;
-
         }
 
         private void ListView_ItemSelected1(object sender, SelectedItemChangedEventArgs e)
