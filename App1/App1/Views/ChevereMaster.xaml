@@ -6,7 +6,7 @@
 
     <StackLayout>
         <ListView x:Name="listView" BackgroundColor="#303440" SeparatorColor="#848484"
-              SeparatorVisibility="Default"
+              SeparatorVisibility="None"
               HasUnevenRows="true"
               ItemsSource="{Binding ChevereMenuItems}">
             <ListView.Header>
@@ -30,9 +30,20 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout Padding="15,10" HorizontalOptions="FillAndExpand">
-                            <Label VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" Text="{Binding Title}"  
-                            TextColor="White"  FontFamily="Open Sans, serif" FontSize="Medium" />
+                        <StackLayout VerticalOptions="FillAndExpand"
+                             Orientation="Horizontal"
+                             Padding="15,10,0,10"
+                             Spacing="10">
+
+                            <Image Source="{Binding Icon}"
+                         WidthRequest="30"
+                         HeightRequest="30"
+                         VerticalOptions="Center" />
+
+                            <Label Text="{Binding Title}"
+                         FontSize="Medium"
+                         VerticalOptions="Center"
+                         TextColor="White"/>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>

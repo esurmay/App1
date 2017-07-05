@@ -31,12 +31,12 @@ namespace App1.Views
             {
                 ChevereMenuItems = new ObservableCollection<ChevereMenuItem>(new[]
                 {
-                    new ChevereMenuItem { Id = 1, Title = "INICIO", TargetType = typeof(InicioPage) },
-                    new ChevereMenuItem { Id = 6, Title = "RADIO EN VIVO", TargetType = typeof(RadioVivoPage) },
-                    new ChevereMenuItem { Id = 2, Title = "NOSOTROS", TargetType = typeof(NosotrosPage) },
-                    new ChevereMenuItem { Id = 4, Title = "NOTICIAS", TargetType = typeof(NoticiasPage) },
-                    new ChevereMenuItem { Id = 3, Title = "PROGRAMAS", TargetType = typeof(ProgramasPage) },
-                    new ChevereMenuItem { Id = 5, Title = "PATROCINANTES", TargetType = typeof(PatrocinantesPage) },
+                    new ChevereMenuItem { Id = 1, Icon="ic_home.png", Title = "INICIO", TargetType = typeof(InicioPage) },
+                    new ChevereMenuItem { Id = 6, Icon="ic_wifi_tethering.png", Title = "RADIO EN VIVO", TargetType = typeof(RadioVivoPage) },
+                    new ChevereMenuItem { Id = 2, Icon="ic_supervisor_account.png", Title = "NOSOTROS", TargetType = typeof(NosotrosPage) },
+                    new ChevereMenuItem { Id = 4, Icon="ic_format_align_justify.png", Title = "NOTICIAS", TargetType = typeof(NoticiasPage) },
+                    new ChevereMenuItem { Id = 3, Icon="ic_live_tv.png", Title = "PROGRAMAS", TargetType = typeof(ProgramasPage) },
+                    new ChevereMenuItem { Id = 5, Icon="ic_assignment_ind.png", Title = "PATROCINANTES", TargetType = typeof(PatrocinantesPage) },
                 });
             }
 
