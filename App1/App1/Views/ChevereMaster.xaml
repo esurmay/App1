@@ -19,14 +19,11 @@
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="10"/>
-                        <RowDefinition Height="10"/>
                         <RowDefinition Height="*"/>
+                        <RowDefinition Height="10"/>
                     </Grid.RowDefinitions>
-                    <Label FontSize="Medium" FontFamily="Open Sans, serif"
-              Grid.Column="1"
-              Grid.Row="2"
-              Text="LEVÁNTATE CHÉVERE" TextColor="White"
-              Style="{DynamicResource SubtitleStyle}"/>
+                    <Image Source="LogoLevantate.png"  HorizontalOptions="CenterAndExpand" Grid.ColumnSpan="3"
+                          Grid.Row="1"/>
                 </Grid>
 
             </ListView.Header>
