@@ -11,16 +11,20 @@
             CachingStrategy="RecycleElement"
             IsRefreshing="{Binding IsBusy, Mode=TwoWay}"
             RefreshCommand="{Binding RefreshDataCommand}"
-              SeparatorColor="Blue">
+            SeparatorVisibility="None">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
-                    <StackLayout>
-                        <Image Source="{Binding ImageUrl}" />
-                        <Label Text="{Binding Text}" TextColor="#303440" FontAttributes="Bold" FontSize="Medium"
+                    <StackLayout BackgroundColor="LightGray" Margin="10,5,10,5">
+                        <Frame   HasShadow="True" Padding="1,1,1,1">
+                            <StackLayout>
+                                <Image Source="{Binding ImageUrl}" />
+                                <Label Text="{Binding Text}" TextColor="#303440" FontAttributes="Bold" FontSize="Medium"
                    Style="{DynamicResource ListItemTextStyle}" />
-                        <Label Text="{Binding Detail}" 
+                                <Label Text="{Binding Detail}" 
                    Style="{DynamicResource ListItemDetailTextStyle}"/>
+                            </StackLayout>
+                        </Frame>
                     </StackLayout>
                 </ViewCell>
             </DataTemplate>

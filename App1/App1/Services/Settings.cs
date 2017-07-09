@@ -42,7 +42,7 @@ namespace App1.Services
             //IsConnected = true;
             if (Items.Count <= 1) Items.Clear();
 
-            if (IsConnected)
+            if (CrossConnectivity.Current.IsConnected)
             {
                 string responseString = string.Empty;
 
