@@ -1,15 +1,59 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xfg="clr-namespace:XFGloss;assembly=XFGloss"
              x:Class="App1.Views.RadioVivoPage"
              Title="Radio En Vivo">
 
+    <xfg:ContentPageGloss.BackgroundGradient>
+        <xfg:Gradient Rotation="180">
+            <xfg:GradientStep StepColor="White" StepPercentage="0" />
+            <xfg:GradientStep StepColor="White" StepPercentage=".5" />
+            <xfg:GradientStep StepColor="#ccd9ff" StepPercentage="1" />
+        </xfg:Gradient>
+    </xfg:ContentPageGloss.BackgroundGradient>
     <StackLayout>
-        <Image Source="LogoLevantate.png" />
-        <Image Source="NoConnected.png" IsVisible="{Binding NoConectado}"/>
-        <Label x:Name="LblSinConexion" Text="Ups. Sin Conexión a Internet"  IsVisible="{Binding NoConectado}"
-                   HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="Medium"/>
-        <WebView x:Name="LVBrowser" Source="{Binding HTMLSource}"  HeightRequest="1000" WidthRequest="1000"/>
+        <StackLayout HorizontalOptions="Center" Orientation="Horizontal" VerticalOptions="Start">
+            <Image Source="LogoLevantate.png"  HorizontalOptions="Center"/>
+        </StackLayout>
 
+        <StackLayout VerticalOptions="CenterAndExpand">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <WebView x:Name="LVBrowser" Source="{Binding HTMLSource}" Grid.Row="0" />
+                <Label Grid.Row="1" FontSize="20" Text="Con tu pana Hardiman" FontFamily="Open Sans" FontAttributes="Italic" TextColor="#112A75" HorizontalTextAlignment="Center" />
+                <Label Grid.Row="2" Text="Lunes a Viernes"  HorizontalTextAlignment="Center" TextColor="Black" />
+                <Label Grid.Row="3" Text="08:30 am - 09:45 am"  HorizontalTextAlignment="Center" TextColor="Black" />
+            </Grid>
+        </StackLayout>
+        <StackLayout HorizontalOptions="Center" Orientation="Horizontal" VerticalOptions="End">
+            <Image Source="imgFB.png">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Tapped="OnTapGestureRecognizerTapped"
+                        NumberOfTapsRequired="1" />
+                </Image.GestureRecognizers>
+            </Image>
+            <Image Source="imgINS.png">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Tapped="OnTapGestureRecognizerTapped"
+                        NumberOfTapsRequired="1" />
+                </Image.GestureRecognizers>
+            </Image>
+            <Image Source="imgYT.png" >
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Tapped="OnTapGestureRecognizerTapped"
+                        NumberOfTapsRequired="1" />
+                </Image.GestureRecognizers>
+            </Image>
+        </StackLayout>
     </StackLayout>
+
 </ContentPage>

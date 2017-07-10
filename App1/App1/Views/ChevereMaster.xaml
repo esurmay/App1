@@ -10,7 +10,7 @@
               HasUnevenRows="true"
               ItemsSource="{Binding ChevereMenuItems}">
             <ListView.Header>
-     
+
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="10"/>
@@ -29,23 +29,8 @@
             </ListView.Header>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <ViewCell>
-                        <StackLayout VerticalOptions="FillAndExpand"
-                             Orientation="Horizontal"
-                             Padding="15,10,0,10"
-                             Spacing="10">
-
-                            <Image Source="{Binding Icon}"
-                         WidthRequest="30"
-                         HeightRequest="30"
-                         VerticalOptions="Center" />
-
-                            <Label Text="{Binding Title}"
-                         FontSize="Medium"
-                         VerticalOptions="Center"
-                         TextColor="White"/>
-                        </StackLayout>
-                    </ViewCell>
+                    <ImageCell Text="{Binding Title}" ImageSource="{Binding Icon}"
+                               TextColor="White"/>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

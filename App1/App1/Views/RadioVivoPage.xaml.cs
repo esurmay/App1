@@ -23,6 +23,25 @@ namespace App1.Views
             InitializeComponent();
             BindingContext = new RadioVivoPageViewModel();
         }
+
+        void OnTapGestureRecognizerTapped(object sender, EventArgs args)
+        {
+            var imageSender = (Image)sender;
+            var source = imageSender.Source as FileImageSource;
+            if (source.File == "imgFB.png")
+            {
+                Device.OpenUri(new Uri("https://www.facebook.com/levancheve"));
+            }
+            else if (source.File == "imgINS.png")
+            {
+                Device.OpenUri(new Uri("https://www.instagram.com/levantatechevere/"));
+            }
+            else if (source.File == "imgYT.png")
+            {
+                Device.OpenUri(new Uri("https://www.youtube.com/c/levantatechevere"));
+            }
+        }
+
     }
 
     class RadioVivoPageViewModel : INotifyPropertyChanged
@@ -33,16 +52,9 @@ namespace App1.Views
 
             if (CrossConnectivity.Current.IsConnected)
             {
-                string HTML = @"<html>
-                                <body>
-                                    <div style='text-align:center;width:100%'>
-                                          <br/>
-                                          <audio width='100%' controls='' autoplay='' name='media'><source src='http://usa1.usastreams.com:8000/tropical' type='audio/mpeg'></audio>
-                                         <br/>
-                                         <img width='100%' height='20%' src='http://1.bp.blogspot.com/-HQbgdBWvY24/WJDCpEmS4iI/AAAAAAAAK8w/vCR05sxPZF8FfbJUe1xljmf-q_r60gxogCK4B/s1600/200.gif' alt='Levantate Chévere On Air'>
-                                   </div>
-                               </body>
-                           </html> ";
+                string HTML = @"<div style='text-align:center;width:100%'>
+                                     <audio width='100%' controls='' autoplay='' name='media'><source src='http://usa1.usastreams.com:8000/tropical' type='audio/mpeg'></audio>
+                                </div> ";
 
                 htmlSource.Html = HTML;
                 HTMLSource = htmlSource;
