@@ -34,12 +34,7 @@ namespace App1.Services
 
         public static async Task GetFeedsAsync(string PageName, string Url, ObservableCollection<ItemDetails> Items)
         {
-            bool IsConnected = false;
-            if (CrossConnectivity.Current.IsConnected)
-            {
-                IsConnected = await CrossConnectivity.Current.IsRemoteReachable(Url, 80, 5000);
-            }
-            //IsConnected = true;
+
             if (Items.Count <= 1) Items.Clear();
 
             if (CrossConnectivity.Current.IsConnected)
@@ -48,12 +43,11 @@ namespace App1.Services
 
                 using (var client = new HttpClient())
                 {
-                    var response = client.GetAsync(Url).Result;
-                    if (response.IsSuccessStatusCode)
+                    using (var r = await client.GetAsync(new Uri(Url)))
                     {
-                        var responseContent = response.Content;
-                        responseString = responseContent.ReadAsStringAsync().Result;
+                        responseString = await r.Content.ReadAsStringAsync();
                     }
+                    
                 }
                 responseString = responseString.TrimStart();
                 if (!string.IsNullOrEmpty(responseString))

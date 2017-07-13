@@ -1,6 +1,7 @@
 ﻿{
   "dependencies": {
     "Ansuria.XFGloss": "1.0.6.59",
+    "Microsoft.Net.Http": "2.2.29",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
     "Xam.Plugin.Connectivity": "2.3.0",
     "Xamarin.Forms": "2.3.4.224"
