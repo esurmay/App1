@@ -31,7 +31,6 @@ namespace App1.Views
             {
                 ChevereMenuItems = new ObservableCollection<ChevereMenuItem>(new[]
                 {
-                    new ChevereMenuItem { Id = 1, Icon="ic_home.png", Title = "INICIO", TargetType = typeof(InicioPage) },
                     new ChevereMenuItem { Id = 6, Icon="ic_wifi_tethering.png", Title = "RADIO EN VIVO", TargetType = typeof(RadioVivoPage) },
                     new ChevereMenuItem { Id = 2, Icon="ic_supervisor_account.png", Title = "NOSOTROS", TargetType = typeof(NosotrosPage) },
                     new ChevereMenuItem { Id = 4, Icon="ic_format_align_justify.png", Title = "NOTICIAS", TargetType = typeof(NoticiasPage) },
