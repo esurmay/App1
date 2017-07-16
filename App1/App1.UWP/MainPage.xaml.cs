@@ -1,11 +1,11 @@
-﻿namespace App1.UWP
+﻿namespace LevantateChevere.UWP
 {
     public sealed partial class MainPage
     {
         public MainPage()
         {
             this.InitializeComponent();
-            LoadApplication(new App1.App());
+            LoadApplication(new LevantateChevere.App());
         }
     }
 }

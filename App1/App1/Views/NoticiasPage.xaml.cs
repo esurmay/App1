@@ -11,10 +11,10 @@ using System.Windows.Input;
 using System.Xml.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using App1.Services;
+using LevantateChevere.Services;
 using Plugin.LocalNotifications;
 
-namespace App1.Views
+namespace LevantateChevere.Views
 {
 
     [XamlCompilation(XamlCompilationOptions.Compile)]

@@ -1,7 +1,7 @@
 ﻿using System;
-using App1.Helpers;
+using LevantateChevere.Helpers;
 
-namespace App1.Models
+namespace LevantateChevere.Models
 {
     public class BaseDataObject : ObservableObject
     {

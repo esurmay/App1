@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace App1.Helpers
+namespace LevantateChevere.Helpers
 {
     public class MessagingCenterAlert
     {

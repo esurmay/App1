@@ -1,6 +1,6 @@
-﻿using App1.Models;
+﻿using LevantateChevere.Models;
 
-namespace App1.ViewModels
+namespace LevantateChevere.ViewModels
 {
     public class ItemDetailViewModel : BaseViewModel
     {

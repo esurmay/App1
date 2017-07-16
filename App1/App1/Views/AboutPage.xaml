@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="App1.Views.AboutPage"
-             xmlns:vm="clr-namespace:App1.ViewModels;"
+             x:Class="LevantateChevere.Views.AboutPage"
+             xmlns:vm="clr-namespace:LevantateChevere.ViewModels;"
              Title="{Binding Title}">
   <ContentPage.BindingContext>
     <vm:AboutViewModel />

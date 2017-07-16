@@ -1,4 +1,4 @@
-﻿using App1.Services;
+﻿using LevantateChevere.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -13,7 +13,7 @@ using System.Xml.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace App1.Views
+namespace LevantateChevere.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PatrocinantesPage : ContentPage

@@ -1,10 +1,10 @@
 ﻿using System;
 
-using App1.Models;
+using LevantateChevere.Models;
 
 using Xamarin.Forms;
 
-namespace App1.Views
+namespace LevantateChevere.Views
 {
     public partial class NewItemPage : ContentPage
     {

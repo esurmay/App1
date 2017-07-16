@@ -10,7 +10,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace App1.Services
+namespace LevantateChevere.Services
 {
     public static class Settings
     {

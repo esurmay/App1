@@ -1,4 +1,4 @@
-﻿using App1.Services;
+﻿using LevantateChevere.Services;
 using Plugin.Connectivity;
 using System;
 using System.Collections.Generic;
@@ -12,7 +12,7 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace App1.Views
+namespace LevantateChevere.Views
 {
 
     [XamlCompilation(XamlCompilationOptions.Compile)]

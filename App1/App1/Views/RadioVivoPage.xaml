@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:xfg="clr-namespace:XFGloss;assembly=XFGloss"
-             x:Class="App1.Views.RadioVivoPage"
+             x:Class="LevantateChevere.Views.RadioVivoPage"
              Title="Radio En Vivo">
 
     <xfg:ContentPageGloss.BackgroundGradient>
@@ -27,8 +27,8 @@
                 </Grid.RowDefinitions>
                 <WebView x:Name="LVBrowser" Source="{Binding HTMLSource}" Grid.Row="0" />
                 <Label Grid.Row="1" FontSize="20" Text="Con tu pana Hardiman" FontFamily="Open Sans" FontAttributes="Italic" TextColor="#112A75" HorizontalTextAlignment="Center" />
-                <Label Grid.Row="2" Text="Lunes a Viernes"  HorizontalTextAlignment="Center" TextColor="Black" />
-                <Label Grid.Row="3" Text="08:30 am - 09:45 am"  HorizontalTextAlignment="Center" TextColor="Black" />
+                <Label Grid.Row="2" Text="Lunes a Viernes. 08:30 am - 09:45 am"  HorizontalTextAlignment="Center" TextColor="Black" />
+                <Label Grid.Row="3" Text="MADRID - ESPAÑA."  HorizontalTextAlignment="Center" TextColor="Black" />
             </Grid>
         </StackLayout>
         <StackLayout HorizontalOptions="Center" Orientation="Horizontal" VerticalOptions="End">

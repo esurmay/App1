@@ -1,6 +1,6 @@
 ﻿using UIKit;
 
-namespace App1.iOS
+namespace LevantateChevere.iOS
 {
 	public class Application
 	{

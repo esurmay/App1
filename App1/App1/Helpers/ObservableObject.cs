@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace App1.Helpers
+namespace LevantateChevere.Helpers
 {
     /// <summary>
     /// Observable object with INotifyPropertyChanged implemented

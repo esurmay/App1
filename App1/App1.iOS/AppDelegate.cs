@@ -2,7 +2,7 @@
 using Foundation;
 using UIKit;
 
-namespace App1.iOS
+namespace LevantateChevere.iOS
 {
 	[Register("AppDelegate")]
 	public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate

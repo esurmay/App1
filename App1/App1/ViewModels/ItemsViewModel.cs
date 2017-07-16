@@ -2,13 +2,13 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 
-using App1.Helpers;
-using App1.Models;
-using App1.Views;
+using LevantateChevere.Helpers;
+using LevantateChevere.Models;
+using LevantateChevere.Views;
 
 using Xamarin.Forms;
 
-namespace App1.ViewModels
+namespace LevantateChevere.ViewModels
 {
     public class ItemsViewModel : BaseViewModel
     {

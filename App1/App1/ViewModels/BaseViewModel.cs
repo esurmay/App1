@@ -1,10 +1,10 @@
-﻿using App1.Helpers;
-using App1.Models;
-using App1.Services;
+﻿using LevantateChevere.Helpers;
+using LevantateChevere.Models;
+using LevantateChevere.Services;
 
 using Xamarin.Forms;
 
-namespace App1.ViewModels
+namespace LevantateChevere.ViewModels
 {
     public class BaseViewModel : ObservableObject
     {

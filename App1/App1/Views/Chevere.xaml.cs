@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace App1.Views
+namespace LevantateChevere.Views
 {
 
     [XamlCompilation(XamlCompilationOptions.Compile)]

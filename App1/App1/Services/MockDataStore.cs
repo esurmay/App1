@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-using App1.Models;
+using LevantateChevere.Models;
 
 using Xamarin.Forms;
 
-[assembly: Dependency(typeof(App1.Services.MockDataStore))]
-namespace App1.Services
+[assembly: Dependency(typeof(LevantateChevere.Services.MockDataStore))]
+namespace LevantateChevere.Services
 {
     public class MockDataStore : IDataStore<Item>
     {

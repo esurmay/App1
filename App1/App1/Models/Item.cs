@@ -1,4 +1,4 @@
-﻿namespace App1.Models
+﻿namespace LevantateChevere.Models
 {
     public class Item : BaseDataObject
     {

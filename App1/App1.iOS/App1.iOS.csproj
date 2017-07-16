@@ -131,12 +131,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\App1\App1.csproj">
-      <Project>{61d7d554-d63c-444f-81ba-20a27b58e820}</Project>
-      <Name>App1</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
   </ItemGroup>
   <ItemGroup>
@@ -199,6 +193,12 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_wifi_tethering.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\App1\LevantateChevere.csproj">
+      <Project>{6aa4a184-3890-430b-a747-889a525d1d11}</Project>
+      <Name>LevantateChevere</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Forms.2.3.4.224\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.3.4.224\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />

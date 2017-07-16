@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace App1.Services
+namespace LevantateChevere.Services
 {
     public interface IDataStore<T>
     {

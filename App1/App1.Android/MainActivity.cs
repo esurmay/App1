@@ -1,10 +1,13 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using LevantateChevere;
 
 namespace App1.Droid
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/MyTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "@string/app_name", Theme = "@style/MyTheme", 
+        MainLauncher = false, 
+        ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle bundle)
@@ -16,7 +19,7 @@ namespace App1.Droid
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
 
-            LoadApplication(new App());
+            LoadApplication(application: new App());
         }
     }
 }

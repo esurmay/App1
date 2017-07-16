@@ -2,7 +2,7 @@
 using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace App1.ViewModels
+namespace LevantateChevere.ViewModels
 {
     public class AboutViewModel : BaseViewModel
     {

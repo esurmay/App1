@@ -1,11 +1,11 @@
 ﻿using System;
 
-using App1.Models;
-using App1.ViewModels;
+using LevantateChevere.Models;
+using LevantateChevere.ViewModels;
 
 using Xamarin.Forms;
 
-namespace App1.Views
+namespace LevantateChevere.Views
 {
     public partial class ItemsPage : ContentPage
     {
