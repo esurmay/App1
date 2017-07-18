@@ -40,6 +40,8 @@ namespace LevantateChevere.Views
             page.Title = item.Title;
             //Detail = new NavigationPage(page);
             var nav = new NavigationPage(page);
+            nav.BarTextColor = Color.White;
+
             nav.PushAsync(page);
             //nav.BarBackgroundColor = "#303440";
             Detail = nav;
