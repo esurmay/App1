@@ -1,4 +1,5 @@
 ﻿using LevantateChevere.Services;
+using NodaTime;
 using Plugin.Connectivity;
 using System;
 using System.Collections.Generic;
@@ -46,22 +47,72 @@ namespace LevantateChevere.Views
 
     class RadioVivoPageViewModel : INotifyPropertyChanged
     {
+        DateTime dateTime;
+
         public RadioVivoPageViewModel()
         {
+            DateTime HoraProgramaInicio = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 22, 02, 0);
+            DateTime HoraProgramaFin = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 22, 05, 0);
+
             var htmlSource = new HtmlWebViewSource();
 
-            if (CrossConnectivity.Current.IsConnected)
+            Device.StartTimer(TimeSpan.FromSeconds(1), () =>
             {
-                string HTML = @"<div style='text-align:center;width:100%'>
+                var systemInstant = SystemClock.Instance.Now;
+                var MadridDateTime = systemInstant.InZone(DateTimeZoneProviders.Tzdb["Europe/Madrid"]).LocalDateTime;
+
+                this.DateTimeMadrid = new DateTime(MadridDateTime.Year,
+                                                    MadridDateTime.Month,
+                                                    MadridDateTime.Day,
+                                                    MadridDateTime.Hour,
+                                                    MadridDateTime.Minute,
+                                                    MadridDateTime.Second);
+
+                if (CrossConnectivity.Current.IsConnected)
+                {
+                    if (HTMLSource == null && HoraProgramaInicio.Minute == DateTimeMadrid.Minute)
+                    {
+                        string HTML = @"<div style='text-align:center;width:100%'>
                                      <audio width='100%' controls='' autoplay='' name='media'><source src='http://usa1.usastreams.com:8000/tropical' type='audio/mpeg'></audio>
                                 </div> ";
 
-                htmlSource.Html = HTML;
-                HTMLSource = htmlSource;
-            }
-            else
-                NoConectado = true;
+                        htmlSource.Html = HTML;
+                        HTMLSource = htmlSource;
+                    }
+                    else if (DateTimeMadrid.Minute == HoraProgramaFin.Minute)
+                    {
+                        string HTML = string.Empty;
 
+                        htmlSource.Html = HTML;
+                        HTMLSource = htmlSource;
+                    }
+                }
+                else
+                    NoConectado = true;
+
+                return true;
+            });
+        }
+
+        public DateTime DateTimeMadrid
+        {
+            set
+            {
+                if (dateTime != value)
+                {
+                    dateTime = value;
+
+                    if (PropertyChanged != null)
+                    {
+                        PropertyChanged(this,
+                            new PropertyChangedEventArgs("DateTimeMadrid"));
+                    }
+                }
+            }
+            get
+            {
+                return dateTime;
+            }
         }
 
         public HtmlWebViewSource HTMLSource
@@ -102,7 +153,7 @@ namespace LevantateChevere.Views
         public event PropertyChangedEventHandler PropertyChanged;
 
         #endregion
-        
+
     }
 
 

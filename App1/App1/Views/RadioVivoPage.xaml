@@ -24,11 +24,13 @@
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <WebView x:Name="LVBrowser" Source="{Binding HTMLSource}" Grid.Row="0" />
                 <Label Grid.Row="1" FontSize="20" Text="Con tu pana Hardiman" FontFamily="Open Sans" FontAttributes="Italic" TextColor="#112A75" HorizontalTextAlignment="Center" />
-                <Label Grid.Row="2" Text="Lunes a Viernes. 08:30 am - 09:45 am"  HorizontalTextAlignment="Center" TextColor="Black" />
-                <Label Grid.Row="3" Text="MADRID - ESPAÑA."  HorizontalTextAlignment="Center" TextColor="Black" />
+                <Label Grid.Row="2" Text="Lunes a Viernes. 08:00 am - 09:45 am"  HorizontalTextAlignment="Center" TextColor="Black" />
+                <Label Grid.Row="3" Text="{Binding DateTimeMadrid, StringFormat='{0:T}'}" HorizontalTextAlignment="Center" TextColor="Black" />
+                <Label Grid.Row="4" Text="MADRID - ESPAÑA."  HorizontalTextAlignment="Center" TextColor="Black" />
             </Grid>
         </StackLayout>
         <StackLayout HorizontalOptions="Center" Orientation="Horizontal" VerticalOptions="End">
