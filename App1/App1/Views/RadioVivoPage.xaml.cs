@@ -51,8 +51,8 @@ namespace LevantateChevere.Views
 
         public RadioVivoPageViewModel()
         {
-            DateTime HoraProgramaInicio = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 22, 02, 0);
-            DateTime HoraProgramaFin = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 22, 05, 0);
+            DateTime HoraProgramaInicio = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 10, 0, 0);
+            DateTime HoraProgramaFin = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 10, 45, 0);
 
             var htmlSource = new HtmlWebViewSource();
 
@@ -70,7 +70,8 @@ namespace LevantateChevere.Views
 
                 if (CrossConnectivity.Current.IsConnected)
                 {
-                    if (HTMLSource == null && HoraProgramaInicio.Minute == DateTimeMadrid.Minute)
+                    if (HTMLSource == null && 
+                            (DateTimeMadrid >= HoraProgramaInicio && DateTimeMadrid <= HoraProgramaFin))
                     {
                         string HTML = @"<div style='text-align:center;width:100%'>
                                      <audio width='100%' controls='' autoplay='' name='media'><source src='http://usa1.usastreams.com:8000/tropical' type='audio/mpeg'></audio>
@@ -78,14 +79,7 @@ namespace LevantateChevere.Views
 
                         htmlSource.Html = HTML;
                         HTMLSource = htmlSource;
-                    }
-                    else if (DateTimeMadrid.Minute == HoraProgramaFin.Minute)
-                    {
-                        string HTML = string.Empty;
-
-                        htmlSource.Html = HTML;
-                        HTMLSource = htmlSource;
-                    }
+                    }                    
                 }
                 else
                     NoConectado = true;
