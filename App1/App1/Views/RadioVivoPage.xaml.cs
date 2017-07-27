@@ -51,8 +51,8 @@ namespace LevantateChevere.Views
 
         public RadioVivoPageViewModel()
         {
-            DateTime HoraProgramaInicio = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 10, 0, 0);
-            DateTime HoraProgramaFin = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 10, 45, 0);
+            DateTime HoraProgramaInicio = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 8, 0, 0);
+            DateTime HoraProgramaFin = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 9, 45, 0);
 
             var htmlSource = new HtmlWebViewSource();
 
