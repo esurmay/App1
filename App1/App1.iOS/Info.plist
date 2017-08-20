@@ -5,7 +5,7 @@
 	<key>CFBundleName</key>
 	<string>App1.iOS</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.LeventateChevere.LeventateChevere</string>
+	<string>com.levantatechevere.levantatechevere</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
@@ -45,14 +45,13 @@
 	</dict>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleLightContent</string>
-	<key>XSAppIconAssets</key>
-	<string>Resources/Media.xcassets/AppIcons.appiconset</string>
 	<key>CFBundleDisplayName</key>
 	<string>Levántate Chévere</string>
-
-<key>UIViewControllerBasedStatusBarAppearance</key>
-    <false/>
-    <key>UIStatusBarHidden</key>
-    <true/>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
+	<key>UIStatusBarHidden</key>
+	<true/>
+	<key>CFBundleShortVersion</key>
+	<string>1</string>
 </dict>
 </plist>
