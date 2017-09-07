@@ -47,7 +47,7 @@ namespace LevantateChevere.Views
             Detail = nav;
 
             MasterPage.ListView.SelectedItem = null;
-            IsPresented = false;
+            //IsPresented = false;
         }
     }
 

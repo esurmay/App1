@@ -18,7 +18,7 @@
         <StackLayout VerticalOptions="CenterAndExpand">
             <Label FontSize="20" Text="Con tu pana Hardiman" FontFamily="Open Sans" FontAttributes="Italic" TextColor="#112A75" HorizontalTextAlignment="Center" />
             <Label Text="Lunes a Viernes"  HorizontalTextAlignment="Center" TextColor="Black" />
-            <Label Text="08:30 am - 09:45 am"  HorizontalTextAlignment="Center" TextColor="Black" />
+            <Label Text="08:00 am - 09:45 am"  HorizontalTextAlignment="Center" TextColor="Black" />
         </StackLayout>
         <StackLayout HorizontalOptions="Center" Orientation="Horizontal" VerticalOptions="End">
             <Image Source="imgFB.png">
