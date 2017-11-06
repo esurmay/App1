@@ -17,6 +17,7 @@ namespace LevantateChevere.iOS
 		    instance.SetCategory(new NSString("AVAudioSessionCategoryPlayback"), AVAudioSessionCategoryOptions.MixWithOthers, out error);
 		    instance.SetMode(new NSString("AVAudioSessionModeDefault"), out error);
 		    instance.SetActive(true, AVAudioSessionSetActiveOptions.NotifyOthersOnDeactivation, out error);
+		    UIApplication.SharedApplication.BeginReceivingRemoteControlEvents();
 		    //end test audio in Background
 
 		    UIApplication.SharedApplication.SetStatusBarStyle(UIStatusBarStyle.LightContent, false);
